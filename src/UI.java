@@ -3,18 +3,20 @@ import java.util.Scanner;
 public class UI {
 
 
-    String getUserInput(String msg) {
+    static String getUserInput(String msg) {
         System.out.println(msg);
         return getUserInput();
     }
-    String getUserInput() {
+
+
+    static String getUserInput() {
         String input;
         Scanner scan = new Scanner(System.in);
         input = scan.nextLine();
         return input;
     }
 
-    int getUserInputInt() {
+    static int getUserInputInt() {
         int input;
         Scanner scan = new Scanner(System.in);
         //Check to see if its valid int
@@ -29,7 +31,7 @@ public class UI {
     }
 
 
-    int getUserInputInt(String msg) {
+     static int getUserInputInt(String msg) {
         System.out.println(msg);
         return getUserInputInt();
     }
