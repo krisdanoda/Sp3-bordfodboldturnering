@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+object Tournament
+'object Foosball
+object KnockOut
+'object GroupTournament
+
+object Player
+object Match
+object Team
+
+
+
+Tournament<|-- KnockOut
+'Foosball <|-- KnockOut
+'Foosball <|-- GroupTournament
+KnockOut "1"*--"*" Match
+'GroupTournament "1"*--"*" Match
+
+
+Match"1" *--"2" Team
+Team"1" *--"*" Player
+
+
+
+
+
+
+
+
+@enduml

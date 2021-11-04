@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class Tournament
+'class Foosball
+'class GroupTournament
+class KnockOut
+class Player
+class Match
+class Team
+class UI
+
+
+
+Main "1" *-- Tournament
+Tournament <|-- KnockOut
+
+'Tournament <-- Foosball
+'Foosball <|-- KnockOut
+'Foosball <|-- GroupTournament
+
+Tournament *-- Match
+'GroupTournament *-- Match
+
+Match *-- Team
+Team *-- Player
+
+Tournament : ArrayList <Team> teams
+
+KnockOut : Match match[]
+KnockOut : ArrayList<match> round( Team teams[] )
+KnockOut : int round
+KnockOut : int calcRounds(ArrayList<match> )
+
+
+'Team array maybe?
+Match : Team teams1
+Match : Team team2
+Match : int score1
+Match : int score2
+Match : Match(Team team1, Team team2)
+
+Match : getWinner()
+Match : getTeam1 ()
+Match : getTeam2 ()
+
+Team : String Name
+Team : ArrayList <Player>
+Team : int points
+
+Player : String name
+
+
+@enduml
