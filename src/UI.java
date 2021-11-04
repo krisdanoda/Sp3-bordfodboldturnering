@@ -7,8 +7,6 @@ public class UI {
         System.out.println(msg);
         return getUserInput();
     }
-
-
     String getUserInput() {
         String input;
         Scanner scan = new Scanner(System.in);
@@ -19,7 +17,14 @@ public class UI {
     int getUserInputInt() {
         int input;
         Scanner scan = new Scanner(System.in);
-        input = scan.nextInt();
+        //Check to see if its valid int
+        while (true)
+            try {
+               input = Integer.parseInt(scan.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.print("Invalid int. Try again: ");
+            }
         return input;
     }
 

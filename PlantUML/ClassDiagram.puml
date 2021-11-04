@@ -28,6 +28,10 @@ Match *-- Team
 Team *-- Player
 
 Tournament : ArrayList <Team> teams
+Tournament : String Name
+Tournament : String deadLine
+Tournament : KnockOut knockout
+
 
 KnockOut : Match match[]
 KnockOut : ArrayList<match> round( Team teams[] )
@@ -36,6 +40,8 @@ KnockOut : int calcRounds(ArrayList<match> )
 
 
 'Team array maybe?
+Match : String name
+Match : String date
 Match : Team teams1
 Match : Team team2
 Match : int score1

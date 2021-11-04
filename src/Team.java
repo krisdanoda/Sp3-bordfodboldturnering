@@ -8,6 +8,7 @@ public class Team {
     private static int ID = 0;
 
 
+
     public Team(String name) {
         this.name = name;
         players = new String[2];
