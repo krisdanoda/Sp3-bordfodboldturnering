@@ -8,6 +8,14 @@ public class Tournament {
     private Knockout knockout;
     private String deadline;
     private boolean closeSignUp;
+    public Tournament(String name){
+        this.name=name ;
+    }
     //maybe private date
     //private Date deadline
+
+
+    public String getName(){
+        return name ;
+    }
 }
