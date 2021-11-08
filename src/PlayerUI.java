@@ -42,8 +42,24 @@ public class PlayerUI {
                     }
                 }
             } else if (input == 2) {
+                int count = 1;
+                int inputA=0 ;
+                String inputS="";
 
-                //Tilføj spiller til eksisterende
+                for(int i=0 ; i< tournament.getTeams().size() ; i++) {
+
+                    System.out.println(count + ". " + tournament.getTeams().get(i));
+                    count++ ;
+                }
+                System.out.println(count + ". Tilbage");
+                inputA=UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+                if(inputA==count){
+
+                }
+                inputS=UI.getUserInput("Angiv navn på spiller:");
+
+                tournament.getTeams().get(inputA).getPlayers().add(new Player(inputS));
+
             }
         }
     }
