@@ -50,7 +50,7 @@ public class PlayerUI {
                 }
             }
             else if(input==2){
-                int inputI=0;
+
                 //Tilføj spiller til eksisterende
                 for(int i=0 ; i< tournament.getTeams().size() ; i++) {
                     int count = 1;
@@ -58,7 +58,11 @@ public class PlayerUI {
                     count++ ;
                 }
 
-                inputI=UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+                switch(UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:")){
+                    case 1 {
+
+                    }
+                }
                 
             }
         }
