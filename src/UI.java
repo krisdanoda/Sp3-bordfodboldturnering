@@ -18,7 +18,7 @@ public class UI {
         switch (UI.getUserInputInt()) {
             case 1:
                 //1.Se tilmeldte hold
-                currentTournament.printTeams(currentTournament.getTeamArray());
+                //todo mangler
 
 
                 break;
@@ -31,7 +31,7 @@ public class UI {
 
                 break;
             case 3: //3. Rediger turnering
-                for (Match match: currentTournament.getRoundMatchList())
+                //todo mangler
 
 
 

@@ -5,11 +5,8 @@ public class Tournament {
     private String deadline;
     protected ArrayList<Team> teams;
     private boolean closeSignUp;
+    private Knockout knockoutRound;
 
-    public Tournament(String name){
-        this.name=name ;
-        teams = new ArrayList<>();
-    }
     public Tournament(){
         teams = new ArrayList<>();
     }
