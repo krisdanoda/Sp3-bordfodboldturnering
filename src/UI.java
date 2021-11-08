@@ -5,8 +5,8 @@ public class UI {
     static private Knockout currentTournament;
 
     static void adminTournamentMainMenu() {
-        String menuItem1 = "1.Se tilmeldte hold";
-        String menuItem2 = "2. se info om turnering";
+        String menuItem1 = "1. Se tilmeldte hold";
+        String menuItem2 = "2. Se info om turnering";
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
         String menuItem4 = "4. Se oversigt"; //If only the tournament has started
 
@@ -18,7 +18,7 @@ public class UI {
 
         switch (UI.getUserInputInt()) {
             case 1:
-                //1.Se tilmeldte hold"
+                //1.Se tilmeldte hold
                 currentTournament.printTeams(currentTournament.getTeamArray());
 
 
