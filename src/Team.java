@@ -1,49 +1,76 @@
+import java.util.ArrayList;
+
 public class Team {
 
     private String name;
-    private String[] players;
-    private int score;
+    private ArrayList<Player> players;
+    private int points;
     private int teamID;
-    private static int cnt = 0;
-    private static int ID = 0;
+    private boolean hasPlayedExtra = false;
+    private static int cnt = 1;
+    private static int ID = 1;
 
-
+    public Team() {
+        this.teamID = ID;
+        ID++;
+    }
 
     public Team(String name) {
         this.name = name;
-        players = new String[2];
-        score = 0;
-        initPlayers();
+        players = new ArrayList<Player>();
+        points = 0;
+        initPlayers(); //Slettes senere
         teamID = ID++;
     }
 
-
     public void initPlayers() {
-        cnt++;
-        players[0] = "p" + cnt;
-        cnt++;
-        players[1] = "p" + cnt;
+        //int n = (int) (10 * Math.random() + 2);
+        for (int i = 0; i < 2; i++) {
+            players.add(new Player("p" + cnt));
+            cnt++;
+        }
     }
 
-
-    public int getScore() {
-        return score;
+    public int getPoints() {
+        return points;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public int getTeamID() {
         return teamID;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /*
     @Override
     public String toString() {
         String str = "";
-        str += "ID = " + getTeamID() + ", HoldNavn = " + this.name +
-                ", player1 = " + this.players[0] + ", player2 = " + this.players[1];
+        int t = 0;
+        str += "ID = " + getTeamID() + ": " + this.name;
+        for (Player p : players) {
+            if (t % 20 == 0) {
+                str += "\n";
+            }
+            else {
+                str += ", ";
+            }
+            str += players.get(t);
+            t++;
+        }
+
         return str;
     }
+
+     */
 
 }
