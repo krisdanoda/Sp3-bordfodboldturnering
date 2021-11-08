@@ -10,7 +10,6 @@ public class UI {
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
         String menuItem4 = "4. Se oversigt"; //If only the tournament has started
 
-
         String[] menuItems = {menuItem1, menuItem2,menuItem3,menuItem4};
         for (String menuItem : menuItems)
             System.out.println(menuItem);
@@ -52,6 +51,7 @@ public class UI {
     }
 
     //gets user input and returns input as a string
+
     static String getUserInput() {
         String input;
         Scanner scan = new Scanner(System.in);
@@ -73,14 +73,10 @@ public class UI {
             }
         return input;
     }
+
     static int intGetUserIntWithin(int menuItemsSize ){
-
         int input;
-
-
         return getUserInputInt();
-
-
     }
 
 
@@ -89,6 +85,5 @@ public class UI {
         System.out.println(msg);
         return getUserInputInt();
     }
-
 
 }
