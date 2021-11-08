@@ -4,7 +4,7 @@ public class PlayerUI {
     public static void playerMenu(){
         Tournament tournament=new Tournament("Bordfodbold-knockoutturnering") ;
 
-        ArrayList teams=new ArrayList<Team>();
+
         boolean closeSignup=false ;
 
         if(closeSignup){
@@ -22,7 +22,7 @@ public class PlayerUI {
 
                 inputS = UI.getUserInput("Angiv holdnavn:");
                 Team team1 = new Team(inputS);
-                teams.add(team1);
+                tournament.getTeams().add(team1);
 
                 inputS = UI.getUserInput("Angiv navn på første spiller:");
                 team1.getPlayers().add(new Player(inputS));
@@ -50,13 +50,16 @@ public class PlayerUI {
                 }
             }
             else if(input==2){
+                int inputI=0;
                 //Tilføj spiller til eksisterende
+                for(int i=0 ; i< tournament.getTeams().size() ; i++) {
+                    int count = 1;
+                    System.out.println(count + ". " + tournament.getTeams().get(i));
+                    count++ ;
+                }
 
-                /*String inputS="";
-                inputS=UI.getUserInput("Angiv navn på hold du vil tilføje en spiller til:");
-                for(int i=0 ; i< teams.size() ; i++){
-                    if(inputS==)
-                }*/
+                inputI=UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+                
             }
         }
     }

@@ -11,6 +11,9 @@ public class Tournament {
     public Tournament(String name){
         this.name=name ;
     }
+    public ArrayList getTeams(){
+        return teams ;
+    }
     //maybe private date
     //private Date deadline
 
