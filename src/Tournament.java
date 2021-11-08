@@ -1,13 +1,33 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Tournament {
-
     private String name;
-    private ArrayList<Team> teams;
-    private Knockout knockout;
     private String deadline;
-    private boolean closeSignUp;
-    //maybe private date
-    //private Date deadline
+    private ArrayList<Team> teams;
+     private boolean closeSignUp;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
 }

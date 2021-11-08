@@ -8,6 +8,8 @@ public class Knockout {
     private int rounds;
     private boolean extraMatchFlag;
 
+
+
     public Knockout() {
         extraMatchFlag = false;
         roundMatchList = new ArrayList<Match>();
@@ -64,7 +66,9 @@ public class Knockout {
         }
         return teamArray;
     }
-
+    public ArrayList<Match> getRoundMatchList() {
+        return roundMatchList;
+    }
     private void initTeams() {
         teams.add(new Team("#1"));
         teams.add(new Team("#2"));
