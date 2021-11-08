@@ -1,5 +1,6 @@
 public class Menu {
     public static void menu() {
+
         int input=0 ;
         int inputA=0 ;
         input=UI.getUserInputInt("1. Admin\n2. Spiller") ;

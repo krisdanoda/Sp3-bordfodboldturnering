@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 
 public class PlayerUI {
-    public static void playerMenu() {
-        Tournament tournament = new Tournament("Bordfodbold-knockoutturnering");
+    static Tournament tournament;
 
+    public static void playerMenu() {
+
+        tournament = new Tournament("Bordfodbold-knockoutturnering");
 
         boolean closeSignup = false;
 
@@ -46,7 +48,7 @@ public class PlayerUI {
                 }
             } else if (input == 2) {
 
-                //Tilføj spiller til eksisterende
+
             }
         }
     }
