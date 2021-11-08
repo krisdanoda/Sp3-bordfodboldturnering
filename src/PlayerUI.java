@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
 public class PlayerUI {
+    static Tournament tournament ;
     public static void playerMenu(Tournament tournament) {
+
+
         boolean closeSignup = false;
 
         if (closeSignup) {
@@ -17,7 +20,7 @@ public class PlayerUI {
 
                 inputS = UI.getUserInput("Angiv holdnavn:");
                 Team team = new Team(inputS);
-                tournament.addTeam(team);
+                tournament.getTeams().add(team);
 
                 inputS = UI.getUserInput("Angiv navn på første spiller:");
                 team.getPlayers().add(new Player(inputS));
@@ -25,7 +28,7 @@ public class PlayerUI {
                 inputS = UI.getUserInput("Angiv navn på næste spiller");
                 team.getPlayers().add(new Player(inputS));
 
-                input2 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere");
+                input2 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere");
                 if (input2 == 1) {
                     System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
                 } else if (input2 == 2) {
@@ -42,9 +45,25 @@ public class PlayerUI {
                     }
                 }
             } else if (input == 2) {
-
+                int inputA=0 ;
+                String inputS="";
                 //Tilføj spiller til eksisterende
+                for(int i=0 ; i< tournament.getTeams().size() ; i++) {
+                    int count = 1;
+                    System.out.println(count + ". " + tournament.getTeams().get(i));
+                    count++ ;
+                }
+
+                inputA=UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+
+                inputS=UI.getUserInput("Angiv navn på spiller:");
+
+                tournament.getTeams().get(inputA).getPlayers().add(new Player(inputS));
+
+
             }
         }
+
     }
+
 }
