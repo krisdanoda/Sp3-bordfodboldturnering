@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 
 public class PlayerUI {
-    public static void playerMenu() {
-        Tournament tournament = new Tournament("Bordfodbold-knockoutturnering");
-
-
+    public static void playerMenu(Tournament tournament) {
         boolean closeSignup = false;
 
         if (closeSignup) {
@@ -20,7 +17,7 @@ public class PlayerUI {
 
                 inputS = UI.getUserInput("Angiv holdnavn:");
                 Team team = new Team(inputS);
-                tournament.getTeams().add(team);
+                tournament.addTeam(team);
 
                 inputS = UI.getUserInput("Angiv navn på første spiller:");
                 team.getPlayers().add(new Player(inputS));
@@ -28,7 +25,7 @@ public class PlayerUI {
                 inputS = UI.getUserInput("Angiv navn på næste spiller");
                 team.getPlayers().add(new Player(inputS));
 
-                input2 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere");
+                input2 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere");
                 if (input2 == 1) {
                     System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
                 } else if (input2 == 2) {

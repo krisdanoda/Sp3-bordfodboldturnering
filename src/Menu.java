@@ -1,19 +1,14 @@
 public class Menu {
-    public static void menu() {
+    public static void menu(Tournament tournament) {
         int input=0 ;
-        int inputA=0 ;
         input=UI.getUserInputInt("1. Admin\n2. Spiller") ;
         if(input==1){
-            //Admin stuff
-            inputA=UI.getUserInputInt("Adgangskode:");
-            if(inputA==1234){
-                System.out.println("Admin");
-            }
-
+            //Admin Menu
+            UI.adminTournamentMainMenu();
         }
         else if(input==2){
-        //Spiller stuff
-            PlayerUI.playerMenu();
+        //Spiller menu
+            PlayerUI.playerMenu(tournament);
         }
 
     }

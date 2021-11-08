@@ -3,12 +3,17 @@ import java.util.ArrayList;
 public class Tournament {
     private String name;
     private String deadline;
-    private ArrayList<Team> teams;
+    protected ArrayList<Team> teams;
     private boolean closeSignUp;
 
     public Tournament(String name){
         this.name=name ;
+        teams = new ArrayList<>();
     }
+    public Tournament(){
+        teams = new ArrayList<>();
+    }
+
 
     public String getName() {
         return name;
@@ -28,6 +33,10 @@ public class Tournament {
 
     public ArrayList<Team> getTeams() {
         return teams;
+    }
+
+    public void addTeam(Team newTeam) {
+        teams.add(newTeam);
     }
 
     public void setTeams(ArrayList<Team> teams) {

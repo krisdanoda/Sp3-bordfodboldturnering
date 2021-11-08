@@ -1,14 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Knockout {
-    private ArrayList<Team> teams;
+public class Knockout extends Tournament{
     private Team[][] roundTeamArray;
     private ArrayList<Match> roundMatchList;
     private int rounds;
     private boolean extraMatchFlag;
-
-
 
     public Knockout() {
         extraMatchFlag = false;
