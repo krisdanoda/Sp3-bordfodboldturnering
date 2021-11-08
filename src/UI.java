@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
     static private Match currentMatch;
+    static private ArrayList<Match> currentMatches;
     static private Knockout currentTournament;
 
     static void adminTournamentMainMenu() {
+
         String menuItem1 = "1.Se tilmeldte hold";
         String menuItem2 = "2. se info om turnering";
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
@@ -25,15 +28,15 @@ public class UI {
                 break;
             case 2:
                 // 2. se info om turnering
-
                 System.out.printf(currentTournament.toString()); //todo: Make a tostring for tournament
 
 
 
                 break;
             case 3: //3. Rediger turnering
-                for (Match match: currentTournament.getRoundMatchList())
-
+                currentMatches = currentTournament.getRoundMatchList();
+                for (int i = 0; i<currentMatches.size();i++)
+                    System.out.println(i + ". "+ currentTournament.getRoundMatchList());
 
 
                 break;

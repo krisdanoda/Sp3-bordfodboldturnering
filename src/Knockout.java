@@ -7,7 +7,7 @@ public class Knockout {
     private ArrayList<Match> roundMatchList;
     private int rounds;
     private boolean extraMatchFlag;
-
+    ArrayList<ArrayList<Match>> matchRounds = new ArrayList<>();
 
 
     public Knockout() {
@@ -18,6 +18,57 @@ public class Knockout {
         rounds = (int) (Math.log(teams.size()) / Math.log(2)) + 1;
         roundTeamArray = new Team[rounds][];
     }
+
+    public void setWinners() {
+
+        for (int i = matchRounds.size(); i >= 0; i++) {
+            ArrayList<Match> currentMatches = new ArrayList<>();
+
+
+            for (int j = 0; currentMatches.size() > j; j++)
+
+                if (j % 2 == 0)
+                    matchRounds.get(i - 1).get(j / 2).setTeam1(currentMatches.get(j).getWinner());
+                else if ((j % 2) != 0)
+                    matchRounds.get(i - 1).get((j - 1) / 2).setTeam2(currentMatches.get(j).getWinner());
+
+
+        }
+
+
+    }
+
+
+    public Match[] createMatches() {
+        Match[] matches = new Match[teams.size() - 1];
+        for (int i = 0; i < teams.size(); i++) {
+            if (i % 2 == 0)
+                matches[i / 2].setTeam1(teams.get(i));
+            else if (i % 2 != 0)
+                matches[((i - 1) / 2)].setTeam1(teams.get(i));
+        }
+        return matches;
+    }
+
+    public void createBracket() {
+        int sum = 0;
+        int k = 0;
+
+        while (true) {
+            sum += Math.pow(2,k);
+            k++;
+            if ()
+
+        }
+        for (int i = 0; i < rounds; i++) {
+            matchRounds.add(new ArrayList<Match>());
+            for (int j = 0; Math.pow(2, i) > j; j++)
+                matchRounds.get(i).add(new Match(null, null));
+
+        }
+
+    }
+
 
     public Match[] createMatches(Team[] teamArr) {
         int arrLen = teamArr.length;
@@ -39,8 +90,7 @@ public class Knockout {
         if (arrLen % 2 == 1) {
             this.extraMatchFlag = true;
             return (arrLen / 2) + 1;
-        }
-        else {
+        } else {
             return arrLen / 2;
         }
     }
@@ -66,9 +116,11 @@ public class Knockout {
         }
         return teamArray;
     }
+
     public ArrayList<Match> getRoundMatchList() {
         return roundMatchList;
     }
+
     private void initTeams() {
         teams.add(new Team("#1"));
         teams.add(new Team("#2"));

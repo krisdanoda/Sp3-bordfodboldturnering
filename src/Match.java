@@ -1,4 +1,5 @@
 public class Match {
+
     private Team team1;
     private Team team2;
     private int score1;
@@ -17,6 +18,9 @@ public class Match {
         return str;
     }
 
+    public Team getWinner( ){
+        return null;
+    }
     public Team getTeam1() {
         return team1;
     }

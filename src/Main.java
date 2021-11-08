@@ -4,7 +4,7 @@ public class Main {
     static Knockout currentTournament;
     public static void main(String[] args) {
 
-       UI.getUserInputInt();
+        System.out.println(3%2);
 
 
 
