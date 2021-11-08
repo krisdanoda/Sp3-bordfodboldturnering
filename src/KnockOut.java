@@ -119,10 +119,11 @@ public class KnockOut extends Tournament {
             j++;
         }
         if (extraMatchFlag) {
+            System.out.println("extraFlag = " + extraMatchFlag);
             m[n - 1].setTeam1(teamArr[n - 2]);
             m[n - 1].setTeam2(teamArr[n - 1]);
+            extraMatchFlag = false;
         }
-        extraMatchFlag = false;
 
         for (Match ma : this.roundMatches.get(round)) {
             System.out.println("\nma = " + ma.getTeam1().getName() + " - " + ma.getTeam2().getName());
