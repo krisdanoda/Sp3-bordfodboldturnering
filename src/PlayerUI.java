@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class PlayerUI {
     static Tournament tournament ;
     public static void playerMenu(Tournament tournament) {
-
+    // Tilføj tilbage funktion i menuer
 
         boolean closeSignup = false;
 
