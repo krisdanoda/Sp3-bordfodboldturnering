@@ -4,6 +4,7 @@ public class Tournament {
     private String name;
     private String deadline;
     private ArrayList<Team> teams;
+     private boolean closeSignUp;
 
     public String getName() {
         return name;
@@ -28,7 +29,5 @@ public class Tournament {
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
     }
-
-
 
 }

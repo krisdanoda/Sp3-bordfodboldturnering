@@ -1,8 +1,12 @@
+import javax.xml.namespace.QName;
+
 public class Match {
+    private String name;
     private Team team1;
     private Team team2;
     private int score1;
     private int score2;
+    private String date;
 
     public Match(Team t1, Team t2) {
         team1 = t1;
