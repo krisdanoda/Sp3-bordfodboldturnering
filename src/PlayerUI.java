@@ -3,64 +3,104 @@ import java.util.ArrayList;
 public class PlayerUI {
     public static void playerMenu(Tournament tournament) {
         boolean closeSignup = false;
+        int count2=0 ;
+        int input = 0;
+        Team team=new Team("test") ;
 
+        while(count2==0){
         if (closeSignup) {
             System.out.println("Der er lukket for tilmelding");
         } else {
-            int input = 0;
 
             input = UI.getUserInputInt("1. Opret nyt hold\n2. Tilmeld spiller til eksisterende hold");
-
+            count2++ ;
+        }
             if (input == 1) {
-                int input2 = 0;
-                String inputS = "";
+                while(count2==1){
 
-                inputS = UI.getUserInput("Angiv holdnavn:");
-                Team team = new Team(inputS);
-                tournament.addTeam(team);
+                team = teamName(tournament);
 
-                inputS = UI.getUserInput("Angiv navn på første spiller:");
-                team.getPlayers().add(new Player(inputS));
+                playerNames(team);
+                count2++ ;
+            }
+                while(count2==2) {
+                    int input3 = 0;
+                    input3 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
 
-                inputS = UI.getUserInput("Angiv navn på næste spiller");
-                team.getPlayers().add(new Player(inputS));
+                    if (input3 == 1) {
+                        registrationComplete(tournament, team);
 
-                input2 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere");
-                if (input2 == 1) {
-                    System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
-                } else if (input2 == 2) {
-                    inputS = UI.getUserInput("Angiv navn på næste spiller");
-                    team.getPlayers().add(new Player(inputS));
+                    } else if (input3 == 2) {
+                        extraPlayer(team);
 
-                    input2 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere");
-                    if (input2 == 1) {
-                        System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
-                    } else if (input2 == 2) {
-                        inputS = UI.getUserInput("Angiv navn på sidste spiller");
-                        team.getPlayers().add(new Player(inputS));
-                        System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
+                        input3 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere");
+                        if (input3 == 1) {
+                            registrationComplete(tournament, team);
+
+                        } else if (input3 == 2) {
+                            lastPlayer(team);
+
+                            registrationComplete(tournament, team);
+                        }
                     }
+                    else if (input3==3){
+                        count2=-1 ;
+                    }
+                count2++ ;
                 }
             } else if (input == 2) {
-                int count = 1;
-                int inputA=0 ;
-                String inputS="";
+                while(count2==1) {
+                    int count = 1;
+                    int inputA = 0;
+                    String inputS = "";
 
-                for(int i=0 ; i< tournament.getTeams().size() ; i++) {
+                    for (int i = 0; i < tournament.getTeams().size(); i++) {
 
-                    System.out.println(count + ". " + tournament.getTeams().get(i));
-                    count++ ;
+                        System.out.println(count + ". " + tournament.getTeams().get(i));
+                        count++;
+                    }
+                    System.out.println(count + ". Tilbage");
+
+                    inputA = UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+                    if(inputA!=count){
+                        extraPlayer(tournament.getTeams().get(inputA-1));
+                    }
+                    else{
+                        count2=0 ;
+                    }
                 }
-                System.out.println(count + ". Tilbage");
-                inputA=UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
-                if(inputA==count){
-
-                }
-                inputS=UI.getUserInput("Angiv navn på spiller:");
-
-                tournament.getTeams().get(inputA).getPlayers().add(new Player(inputS));
-
             }
         }
+    }
+    public static Team teamName(Tournament tournament){
+        String inputS2 = "";
+
+        inputS2 = UI.getUserInput("Angiv holdnavn:");
+        Team team = new Team(inputS2);
+        tournament.addTeam(team);
+        return team ;
+    }
+    public static void playerNames(Team team){
+        String inputS="";
+
+        inputS = UI.getUserInput("Angiv navn på første spiller:");
+        team.getPlayers().add(new Player(inputS));
+
+        inputS = UI.getUserInput("Angiv navn på næste spiller");
+        team.getPlayers().add(new Player(inputS));
+    }
+    public static void registrationComplete(Tournament tournament, Team team){
+        System.out.println("Jeres hold "+ team.getName()+" er nu tilmeldt " + tournament.getName() + "en");
+    }
+    public static void extraPlayer(Team team){
+        String inputS="";
+
+        inputS = UI.getUserInput("Angiv navn på næste spiller");
+        team.getPlayers().add(new Player(inputS));
+    }
+    public static void lastPlayer(Team team){
+        String inputS="" ;
+        inputS = UI.getUserInput("Angiv navn på sidste spiller");
+        team.getPlayers().add(new Player(inputS));
     }
 }
