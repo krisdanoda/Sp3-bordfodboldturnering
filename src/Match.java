@@ -7,7 +7,7 @@ public class Match {
     private int score1;
     private int score2;
     private String date;
-
+    //private int round;
     public Match(Team t1, Team t2) {
         team1 = t1;
         team2 = t2;

@@ -2,18 +2,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Knockout extends Tournament {
-    private ArrayList<Team> teams;
-    private Match[] matches; // Array of ALL matches
-    private int rounds;
     ArrayList<Match[]> matchesList = new ArrayList<>(); // matchesList has an array of matches, each array represents a round of matches.
-    private String name;
 
     public Knockout(String name) {
         this.name = name;
         teams = new ArrayList<Team>();
-        rounds = (int) (Math.log(teams.size()) / Math.log(2)) + 1;
+        int rounds = (int) (Math.log(teams.size()) / Math.log(2)) + 1;
     }
-    //Create a ALL matches from a list of teams. The first rounds a placed first
+
+    //Create ALL matches from a list of teams. The first rounds a placed first
     public Match[] createMatches() {
         // Create list of empty matches
         matches = new Match[teams.size() - 1];
@@ -62,7 +59,6 @@ public class Knockout extends Tournament {
     public void setNextRound() {
         for (int i = matchesList.size() - 1; i >= 1; i--) {
             Match[] currentMatches = matchesList.get(i);
-
             for (int j = 0; currentMatches.length > j; j++)
 
                 if (j % 2 == 0)
@@ -79,16 +75,7 @@ public class Knockout extends Tournament {
         }
     }
 
-    public void printTeams() {
-        if (teams.size() != 0 ){
-            for (Team t : teams) {
-                System.out.println(t.toString());
-            }
-        } else {
-            System.out.println("Der er ingen hold tilmeldt endnu");
-        }
 
-    }
 
     public Team[] getTeamArray() {
         Team[] teamArray = new Team[this.teams.size()];
@@ -96,12 +83,6 @@ public class Knockout extends Tournament {
             teamArray[i] = teams.get(i);
         }
         return teamArray;
-    }
-
-    public void printMatches() {
-        for (Match match : matches)
-            System.out.println(match.toString());
-
     }
 
     public void setWinners(int i) {

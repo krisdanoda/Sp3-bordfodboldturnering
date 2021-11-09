@@ -15,7 +15,6 @@ public class Team {
         this.name = name;
         players = new ArrayList<Player>();
         score = 0;
-        //initPlayers();
         teamID = ID++;
 
     }
