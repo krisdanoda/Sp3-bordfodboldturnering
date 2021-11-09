@@ -1,99 +1,81 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class Knockout {
+public class Knockout extends Tournament {
     private ArrayList<Team> teams;
-    private Team[][] roundTeamArray;
-    private ArrayList<Match> roundMatchList;
+    private Match[] matches; // Array of ALL matches
     private int rounds;
-    private boolean extraMatchFlag;
-    ArrayList<ArrayList<Match>> matchRounds = new ArrayList<>();
+    ArrayList<Match[]> matchesList = new ArrayList<>(); // matchesList has an array of matches, each array represents a round of matches.
+    private String name;
 
-
-    public Knockout() {
-        extraMatchFlag = false;
-        roundMatchList = new ArrayList<Match>();
+    public Knockout(String name) {
+        this.name = name;
         teams = new ArrayList<Team>();
-        initTeams();
         rounds = (int) (Math.log(teams.size()) / Math.log(2)) + 1;
-        roundTeamArray = new Team[rounds][];
+    }
+    //Create a ALL matches from a list of teams. The first rounds a placed first
+    public Match[] createMatches() {
+        // Create list of empty matches
+        matches = new Match[teams.size() - 1];
+        for (int i = 0; i < matches.length; i++)
+            matches[i] = new Match();
+
+        //Puts in teams into the first matches
+        for (int i = 0; i < teams.size(); i++) {
+            if (i % 2 == 0) {
+                matches[i / 2].setTeam1(teams.get(i));
+            } else if (i % 2 != 0) {
+                matches[((i - 1) / 2)].setTeam2(teams.get(i));
+            }
+        }
+        return matches;
     }
 
-    public void setWinners() {
+    //Creates our bracket from a list of rounds
+    public void createBracket() {
+        int sum = 0, round = 1;
 
-        for (int i = matchRounds.size(); i >= 0; i++) {
-            ArrayList<Match> currentMatches = new ArrayList<>();
+        //while loop to count the number of rounds, and to initialize rounds
+        while (true) {
+            sum += Math.pow(2, round - 1);
+
+            //add a new round
+            matchesList.add(new Match[(int) Math.pow(2, round - 1)]);
+            if (sum + Math.pow(2, round) >= matches.length)
+                break;
+            round++;
+        }
+        //adds a new round so that it reduces the number of teams/matches into a "standard" tournament bracket format, so a potence of 2.
+        int dif = matches.length - sum;
+        if (dif > 0)
+            matchesList.add(new Match[dif]);
+        int k = 0;
+        for (int i = matchesList.size() - 1; i >= 0; i--) {
+
+            for (int j = matchesList.get(i).length - 1; j >= 0; j--) {
+                matchesList.get(i)[j] = matches[k];
+                k++;
+            }
 
 
-            for (int j = 0; currentMatches.size() > j; j++)
+        }
+
+
+    }
+
+    public void setNextRound() {
+        for (int i = matchesList.size() - 1; i >= 1; i--) {
+            Match[] currentMatches = matchesList.get(i);
+
+            for (int j = 0; currentMatches.length > j; j++)
 
                 if (j % 2 == 0)
-                    matchRounds.get(i - 1).get(j / 2).setTeam1(currentMatches.get(j).getWinner());
-                else if ((j % 2) != 0)
-                    matchRounds.get(i - 1).get((j - 1) / 2).setTeam2(currentMatches.get(j).getWinner());
-
+                    matchesList.get(i - 1)[(j / 2)].setTeam2(currentMatches[j].getWinner());
+                else matchesList.get(i - 1)[(j - 1) / 2].setTeam1(currentMatches[j].getWinner());
 
         }
-
-
     }
 
-
-    public Match[] createMatches() {
-        Match[] matches = new Match[teams.size() - 1];
-        for (int i = 0; i < teams.size(); i++) {
-            if (i % 2 == 0)
-                matches[i / 2].setTeam1(teams.get(i));
-            else if (i % 2 != 0)
-                matches[((i - 1) / 2)].setTeam1(teams.get(i));
-        }
-        return matches;
-    }
-
-    public void createBracket() {
-        int sum = 0;
-        int k = 0;
-
-        while (true) {
-            sum += Math.pow(2,k);
-            k++;
-            if ()
-
-        }
-        for (int i = 0; i < rounds; i++) {
-            matchRounds.add(new ArrayList<Match>());
-            for (int j = 0; Math.pow(2, i) > j; j++)
-                matchRounds.get(i).add(new Match(null, null));
-
-        }
-
-    }
-
-
-    public Match[] createMatches(Team[] teamArr) {
-        int arrLen = teamArr.length;
-        Match[] matches = new Match[numberOfMatches(teamArr)];
-        int j = (int) (arrLen / 2);
-        for (int i = 0; i < (arrLen / 2); i++) {
-            matches[i] = new Match(teams.get(i), teams.get(j));
-            j++;
-        }
-        if (extraMatchFlag) {
-            matches[matches.length - 1] = new Match(teams.get(matches.length - 2), teams.get(matches.length - 1));
-            extraMatchFlag = false;
-        }
-        return matches;
-    }
-
-    public int numberOfMatches(Team[] teams) {
-        int arrLen = teams.length;
-        if (arrLen % 2 == 1) {
-            this.extraMatchFlag = true;
-            return (arrLen / 2) + 1;
-        } else {
-            return arrLen / 2;
-        }
-    }
 
     public void printMatches(Match[] matches) {
         System.out.println("Kampe:");
@@ -102,8 +84,8 @@ public class Knockout {
         }
     }
 
-    public void printTeams(Team[] teamArray) {
-        for (Team t : teamArray) {
+    public void printTeams() {
+        for (Team t : teams) {
             System.out.println(t.toString());
         }
         System.out.println("Antal runder = " + rounds);
@@ -117,11 +99,34 @@ public class Knockout {
         return teamArray;
     }
 
-    public ArrayList<Match> getRoundMatchList() {
-        return roundMatchList;
+    public void printMatches() {
+        for (Match match : matches)
+            System.out.println(match.toString());
+
     }
 
-    private void initTeams() {
+    public void setWinners(int i) {
+        for (Match match : matchesList.get(i))
+            match.setScore1(10);
+    }
+
+    public Team[] getWinners() {
+        Team winners[] = new Team[matches.length];
+        for ( int i = 0; i < winners.length; i++)
+            winners[i] = matches[i].getWinner();
+        return winners;
+    }
+
+    private boolean checkRoundOver( ){
+        for (Match match: matches) {
+            if (match == null)
+                return false;
+        }
+
+        return true;
+    }
+
+    public void initTeams() {
         teams.add(new Team("#1"));
         teams.add(new Team("#2"));
         teams.add(new Team("#3"));
@@ -131,6 +136,12 @@ public class Knockout {
         teams.add(new Team("#7"));
         teams.add(new Team("#8"));
         teams.add(new Team("#9"));
+        teams.add(new Team("#10"));
+        teams.add(new Team("#11"));
+        teams.add(new Team("#12"));
+        teams.add(new Team("#13"));
+        teams.add(new Team("#14"));
+
 
     }
 
