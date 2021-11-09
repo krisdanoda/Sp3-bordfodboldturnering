@@ -56,11 +56,7 @@ public class Knockout extends Tournament {
                 matchesList.get(i)[j] = matches[k];
                 k++;
             }
-
-
         }
-
-
     }
 
     public void setNextRound() {
@@ -76,7 +72,6 @@ public class Knockout extends Tournament {
         }
     }
 
-
     public void printMatches(Match[] matches) {
         System.out.println("Kampe:");
         for (Match m : matches) {
@@ -85,10 +80,14 @@ public class Knockout extends Tournament {
     }
 
     public void printTeams() {
-        for (Team t : teams) {
-            System.out.println(t.toString());
+        if (teams.size() != 0 ){
+            for (Team t : teams) {
+                System.out.println(t.toString());
+            }
+        } else {
+            System.out.println("Der er ingen hold tilmeldt endnu");
         }
-        System.out.println("Antal runder = " + rounds);
+
     }
 
     public Team[] getTeamArray() {

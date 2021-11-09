@@ -4,9 +4,8 @@ import java.util.Scanner;
 public class UI {
     static private Match currentMatch;
     static private ArrayList<Match> currentMatches;
-    static private Knockout currentTournament;
 
-    static void adminTournamentMainMenu() {
+    static void adminTournamentMainMenu(Knockout currentKnockout) {
         String menuItem1 = "1. Se tilmeldte hold";
         String menuItem2 = "2. Se info om turnering";
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
@@ -20,13 +19,14 @@ public class UI {
         switch (UI.getUserInputInt()) {
             case 1:
                 //1.Se tilmeldte hold
-                currentTournament.printTeams(currentTournament.getTeamArray());
+                currentKnockout.printTeams();
 
 
                 break;
             case 2:
                 // 2. se info om turnering
-                System.out.printf(currentTournament.toString()); //todo: Make a tostring for tournament
+                //todo: Make a tostring for tournament
+                System.out.println(currentKnockout.toString());
 
 
 

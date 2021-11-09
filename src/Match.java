@@ -13,6 +13,9 @@ public class Match {
         team2 = t2;
     }
 
+    public Match() {
+    }
+
     @Override
     public String toString() {
         String str = "";
@@ -29,8 +32,16 @@ public class Match {
         this.team1 = team1;
     }
 
+    public void setScore1(int score1) {
+        this.score1 = score1;
+    }
+
     public Team getTeam2() {
         return team2;
+    }
+
+    public void setScore2(int score2) {
+        this.score2 = score2;
     }
 
     public void setTeam2(Team team2) {
@@ -43,5 +54,12 @@ public class Match {
 
     public int getScore2() {
         return score2;
+    }
+
+    public Team getWinner( ){
+        if( score1 > score2 )
+            return team1;
+        else
+            return team2;
     }
 }
