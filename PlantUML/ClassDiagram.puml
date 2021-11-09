@@ -11,6 +11,8 @@ class Player
 class Match
 class Team
 class UI
+class PlayerUI
+class Menu
 
 
 
@@ -31,7 +33,7 @@ Tournament : ArrayList <Team> teams
 Tournament : String Name
 Tournament : String deadLine
 Tournament : KnockOut knockout
-
+Tournament : addTeam(Team)
 
 KnockOut : Match match[]
 KnockOut : ArrayList<match> round( Team teams[] )
@@ -51,12 +53,37 @@ Match : Match(Team team1, Team team2)
 Match : getWinner()
 Match : getTeam1 ()
 Match : getTeam2 ()
+Match : setTeam1()
+Match : setTeam2()
+Match : setScore1()
+Match : setScore2()
 
 Team : String Name
 Team : ArrayList <Player>
 Team : int points
+Team : Team(String)
+Team : getName()
+Team : getPlayers()
+Team : getTeamID()
 
 Player : String name
+Player : Player(String)
 
+UI : adminTournamentMainMenu()
+UI : getUserInput()
+UI : getUserInput(String)
+UI : getUserInputInt()
+UI : getUserInputInt(String)
+
+Menu : int input
+Menu : menu(Tournament)
+
+PlayerUI : int input
+PlayerUI : playerMenu(Tournament)
+PlayerUI : teamNames(Tournament)
+PlayerUI : playerNames(Team)
+PlayerUI : registrationComplete(Tournament,Team)
+PlayerUI : extraPlayer(Team)
+PlayerUI : lastPlayer(Team)
 
 @enduml
