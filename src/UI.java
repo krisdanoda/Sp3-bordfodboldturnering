@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
     static private Match currentMatch;
+    static private ArrayList<Match> currentMatches;
     static private Knockout currentTournament;
 
     static void adminTournamentMainMenu() {
@@ -24,14 +26,13 @@ public class UI {
                 break;
             case 2:
                 // 2. se info om turnering
-
                 System.out.printf(currentTournament.toString()); //todo: Make a tostring for tournament
 
 
 
                 break;
             case 3: //3. Rediger turnering
-                for (Match match: currentTournament.getRoundMatchList())
+
 
 
 
@@ -51,7 +52,6 @@ public class UI {
     }
 
     //gets user input and returns input as a string
-
     static String getUserInput() {
         String input;
         Scanner scan = new Scanner(System.in);
@@ -73,7 +73,6 @@ public class UI {
             }
         return input;
     }
-
     static int intGetUserIntWithin(int menuItemsSize ){
         int input;
         return getUserInputInt();
