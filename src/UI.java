@@ -27,7 +27,7 @@ public class UI {
                 break;
             case 2:
                 // 2. se info om turnering
-                //todo: Make a tostring for tournament
+                //todo: Make a tostring for tournament //this is done :)
                 System.out.println(currentKnockout.toString());
 
 
@@ -53,8 +53,28 @@ public class UI {
     static private void editTournament() {
 
         String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
-        String menuItem2 = "2. ændre på Tilmedling frist: " + currentTournament.getDeadline();
-        String menuItem3 = "Return";
+        String menuItem2 = "2. ændre på tilmedling frist: " + currentTournament.getDeadline();
+        String menuItem3 = "3. Luk tilmedling"
+        String menuItem4 = "4. Shuffle hold"
+        String menuItemQuit = "Return";
+
+        String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItem4};
+        for(String menuItem : menuItems )
+            System.out.println(menuItem);
+        switch (getUserInputInt()){
+            case 1:
+                currentTournament.setName(getUserInput("Navn: "));
+            break;
+            case 2:
+                currentTournament.setName(getUserInput("Ændre tilmedling frist "));
+            break;
+            case 3;
+                System.out.println("Tilmelding er lukket" );
+                currentTournament.setCloseSignUp(true);
+
+        }
+
+
 
     }
 
@@ -64,7 +84,7 @@ public class UI {
         Team team2 = match.getTeam2();
 
         String menuItem1 = "1. Sæt point for hold: " + team1.getName();
-        String menuItem2 = "2. Sæt point for hold: " + team1.getName();
+        String menuItem2 = "2. Sæt point for hold: " + team2.getName();
         String[] menuItems = {menuItem1, menuItem2};
         for (String menuItem : menuItems)
             System.out.println(menuItem);
@@ -74,7 +94,7 @@ public class UI {
                 match.setScore1(getUserInputInt("Sæt point for hold " + team1));
                 break;
             case 2:
-                match.setScore1(getUserInputInt("Sæt point for hold " + team1));
+                match.setScore1(getUserInputInt("Sæt point for hold " + team2));
                 break;
         }
     }

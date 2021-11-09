@@ -11,6 +11,7 @@ public class Tournament {
     public Tournament(String name){
         this.name=name ;
         teams = new ArrayList<>();
+        closeSignUp = false;
     }
     public Tournament(){
         teams = new ArrayList<>();
