@@ -21,23 +21,52 @@ Tournament <|-- KnockOut
 'Foosball <|-- KnockOut
 'Foosball <|-- GroupTournament
 
-Tournament *-- Match
+KnockOut *-- Match
 'GroupTournament *-- Match
+
+UI <-- PlayerUI
 
 Match *-- Team
 Team *-- Player
 
+
+Main : Tournament tournament
+Main : Knockout knockout
+Main : static void main(String[] args)
+
+Tournament : Match[] matches
 Tournament : ArrayList <Team> teams
 Tournament : String Name
 Tournament : String deadLine
-Tournament : KnockOut knockout
-
+Tournament : boolean closeSignUp
+Tournament : void printMatches()
+Tournament : void printTeams()
+Tournament : boolean getIsCloseSignUp()
+Tournament : void setCloseSignUp(boolean closeSignUp)
+Tournament : void setScore( )
+Tournament : String getName()
+Tournament : void setName(String name)
+Tournament : String getDeadline()
+Tournament : void setDeadline(String deadline)
+Tournament : ArrayList<Team> getTeams()
+Tournament : void addTeam(Team newTeam)
+Tournament : void setTeams(ArrayList<Team> teams)
 
 KnockOut : Match match[]
-KnockOut : ArrayList<match> round( Team teams[] )
-KnockOut : int round
-KnockOut : int calcRounds(ArrayList<match> )
-
+KnockOut : int rounds
+KnockOut : Match[] matches
+KnockOut : ArrayList<Match[]> matchesList
+KnockOut : String name
+KnockOut : Match[] createMatches()
+KnockOut : void createBracket()
+KnockOut : void setNextRound()
+KnockOut : void printMatches(Match[] matches)
+KnockOut : void printTeams()
+KnockOut : Team[] getTeamArray()
+KnockOut : void printMatches()
+KnockOut : void setWinners(int i)
+KnockOut : Team[] getWinners()
+KnockOut : boolean checkRoundOver( )
 
 'Team array maybe?
 Match : String name
@@ -48,13 +77,37 @@ Match : int score1
 Match : int score2
 Match : Match(Team team1, Team team2)
 
-Match : getWinner()
-Match : getTeam1 ()
-Match : getTeam2 ()
+Match : Team getWinner( )
+Match : Team getTeam1()
+Match : Team getTeam2()
+Match : void setTeam1(Team team1)
+Match : void setTeam2(Team team2)
+Match : int getScore1()
+Match : int getScore2()
+Match : void setScore1(int score1)
+Match : void setScore2(int score2)
+Match : String toString()
 
-Team : String Name
-Team : ArrayList <Player>
+Team : String name
+Team : ArrayList <Player> players
 Team : int points
+Team : int score;
+Team : String getName()
+Team : ArrayList<Player> getPlayers()
+Team : setScore(int score)
+Team : int getTeamID()
+Team : String toString()
+
+'UI : static Match currentMatch
+'UI : static ArrayList<Match> currentMatches
+UI : static void adminTournamentMainMenu(Knockout currentKnockout)"
+UI : static String getUserInput(String msg)
+UI : static String getUserInput()
+UI : static int getUserInputInt()
+UI : static int getUserInputInt(String msg)
+
+PlayerUI : static void playerMenu(Tournament tournament)
+
 
 Player : String name
 
