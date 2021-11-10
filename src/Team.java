@@ -38,7 +38,7 @@ public class Team {
     @Override
     public String toString() {
         String str = "";
-        str += " HoldNavn = " + this.name;
+        str += this.name;
         return str;
     }
 

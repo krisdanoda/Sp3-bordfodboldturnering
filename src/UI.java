@@ -101,7 +101,7 @@ public class UI {
                     if (input == currentTournament.matches.length+1) {
                         System.out.println("Vinder i " + currentTournament.getName() + " er sæt.");
                         currentTournament.setNextRound();
-                    } else if (input > 0 && input <= currentTournament.matches.length-1)
+                    } else if (input > 0 && input <= currentTournament.matches.length)
                         editMatch(currentTournament.matches[input - 1]);
 
                     break;
@@ -117,8 +117,8 @@ public class UI {
     static private void editTournament() {
 
         String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
-        String menuItem2 = "2. ændre på tilmedling frist: " + currentTournament.getDeadline();
-        String menuItem3 = "3. Luk tilmedling";
+        String menuItem2 = "2. ændre på tilmelding frist: " + currentTournament.getDeadline();
+        String menuItem3 = "3. Luk tilmelding";
         String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
         String menuItemQuit = "5. Return";
 
@@ -130,7 +130,7 @@ public class UI {
                 currentTournament.setName(getUserInput("Navn: "));
                 break;
             case 2:
-                currentTournament.setDeadline(getUserInput("Ændre tilmedling frist "));
+                currentTournament.setDeadline(getUserInput("Ændre tilmelding frist "));
                 break;
             case 3:
                 System.out.println("Tilmelding er lukket");
@@ -156,7 +156,7 @@ public class UI {
 
         for (String menuItem : menuItems)
             System.out.println(menuItem);
-        String msg = "Sæt point for holde";
+        String msg = "Sæt point for hold";
         switch (UI.getUserInputInt()) {
             case 1:
                 match.setScore1(getUserInputInt("Sæt point for hold " + team1));

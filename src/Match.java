@@ -22,11 +22,11 @@ public class Match {
         String str = "";
         if (team1 != null)
             str += this.team1.toString();
-        str += " score: " + score1;
-        str += " <-- MOD --> ";
+        str += ": "+score1;
+        str += " < vs > ";
         if (team2 != null)
             str += this.team2.toString();
-        str += " score2: " + this.score2;
+        str += ": "+this.score2;
 
         return str;
     }
