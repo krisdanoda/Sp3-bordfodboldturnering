@@ -20,11 +20,8 @@ Tournament <|-- KnockOut
 'Foosball <|-- KnockOut
 'Foosball <|-- GroupTournament
 
-Tournament *-- Match
 'GroupTournament *-- Match
 
-Match *-- Team
-Team *-- Player
 
 Tournament : ArrayList <Team> teams
 Tournament : String Name
@@ -32,7 +29,6 @@ Tournament : String deadLine
 Tournament : KnockOut knockout
 Tournament : addTeam(Team)
 
-KnockOut : Match match[]
 KnockOut : ArrayList<match> round( Team teams[] )
 KnockOut : int round
 KnockOut : int calcRounds(ArrayList<match> )
@@ -40,7 +36,9 @@ KnockOut : int calcRounds(ArrayList<match> )
 KnockOut "1" *-- "*" Match
 'GroupTournament *-- Match
 
-UI <-- Main
+FileController *-- Tournament
+Main *-- UI
+
 
 Match "1" *-- "2" Team
 Team "1" *-- "*" Player
@@ -102,12 +100,7 @@ KnockOut : ArrayList<Match[]> matchesList
 KnockOut : Match[] createMatches()
 KnockOut : void printBracket()
 KnockOut : void createBracket()
-KnockOut : void printMatches(Match[] matches)
 KnockOut : void setNextRound()
-KnockOut : void printMatches()
-KnockOut : Team[] getTeamArray()
-KnockOut : void setWinners(int i)
-KnockOut : Team[] getWinners()
 
 'Team array maybe?
 Match : String name
@@ -140,7 +133,6 @@ Team : void addPlayer(Player player)
 Team : String toString()
 
 Player : String name
-Player : Player(String)
 
 UI : adminTournamentMainMenu()
 UI : getUserInput()
