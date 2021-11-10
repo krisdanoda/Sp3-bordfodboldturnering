@@ -1,5 +1,3 @@
-import com.sun.tools.jconsole.JConsoleContext;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -47,7 +45,7 @@ public class FileController {
 
         try {
             writer = new FileWriter(path);
-            writer.append(teamAsString);
+            writer.write(teamAsString);
             writer.close();
         }catch (IOException e){
             System.out.println(e.getMessage());
@@ -71,5 +69,15 @@ public class FileController {
         System.out.println(tmpteam.getName());
         System.out.println(tmpteam.getScore());
         System.out.println(tmpteam.getPlayers());
+    }
+    public void setCloseSignUp() {
+        String closeSignUpAsString ="closeSignUp,true";
+        try {
+            writer = new FileWriter(path);
+            writer.write(closeSignUpAsString);
+            writer.close();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
