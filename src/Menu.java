@@ -1,17 +1,22 @@
 public class Menu {
-    public static void menu(Tournament tournament, Knockout knockout) {
+    public static int count2=0;
+    public static void menu(Tournament tournament) {
         int input=0 ;
-        input=UI.getUserInputInt("1. Admin\n2. Spiller") ;
 
-        if(input==1){
-            //Admin Menu
-            UI.adminMainMenu();
+        while(count2==0) {
+            input = UI.getUserInputInt("1. Admin\n2. Spiller\n3. Afslut");
+            if (input == 1) {
+                //Admin Menu
+                UI.adminTournamentMainMenu();
+            } else if (input == 2) {
+                //Spiller menu
+                count2++ ;
+                PlayerUI.playerMenu(tournament);
+            }
+            else if (input == 3){
+                count2=9;
+            }
         }
-        else if(input==2){
-        //Spiller menu
-            PlayerUI.playerMenu(tournament);
-        }
-
     }
 
 }
