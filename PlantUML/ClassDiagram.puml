@@ -2,7 +2,6 @@
 'https://plantuml.com/class-diagram
 
 
-
 class Tournament
 'class Foosball
 'class GroupTournament
@@ -11,8 +10,6 @@ class Player
 class Match
 class Team
 class UI
-class PlayerUI
-class Menu
 
 
 
@@ -40,6 +37,77 @@ KnockOut : ArrayList<match> round( Team teams[] )
 KnockOut : int round
 KnockOut : int calcRounds(ArrayList<match> )
 
+KnockOut "1" *-- "*" Match
+'GroupTournament *-- Match
+
+UI <-- Main
+
+Match "1" *-- "2" Team
+Team "1" *-- "*" Player
+
+UI : Knockout currentTournament
+UI : int count2
+UI : void menu()
+UI : void adminMainMenu()
+UI : void adminTournamentMainMenu()
+UI : void editTournament()
+UI : void editMatch(Match match)
+UI : String getUserInput(String msg)
+UI : String getUserInput()
+UI : int getUserInputInt()
+UI : int intGetUserIntWithin(int menuItemsSize)
+UI : int getUserInputInt(String msg)
+UI : void playerMenu(Tournament tournament)
+UI : Team teamName(Tournament tournament)
+UI : void playerNames(Team team)
+UI : void registrationComplete(Tournament tournament, Team team)
+UI : void extraPlayer(Team team)
+UI : void lastPlayer(Team team)
+
+FileController : Scanner scanner
+FileController : File file
+FileController : String path
+FileController : ArrayList<String> data
+FileController : FileWriter writer
+FileController : Tournament tournament
+FileController : ArrayList<String> readFile()
+FileController : void saveTeam(Team team)
+FileController : void readTeam()
+
+Main : Tournament tournament
+Main : Knockout knockout
+Main : static void main(String[] args)
+
+Tournament : Match[] matches
+Tournament : ArrayList <Team> teams
+Tournament : String Name
+Tournament : String deadLine
+Tournament : boolean closeSignUp
+Tournament : void printMatches()
+Tournament : void printTeams()
+Tournament : boolean getIsCloseSignUp()
+Tournament : Match getMatch(int index)
+Tournament : void setCloseSignUp(boolean closeSignUp)
+Tournament : void setScore( )
+Tournament : String getName()
+Tournament : void setName(String name)
+Tournament : String getDeadline()
+Tournament : void setDeadline(String deadline)
+Tournament : ArrayList<Team> getTeams()
+Tournament : void addTeam(Team newTeam)
+Tournament : void setTeams(ArrayList<Team> teams)
+Tournament : String toString()
+
+KnockOut : ArrayList<Match[]> matchesList
+KnockOut : Match[] createMatches()
+KnockOut : void printBracket()
+KnockOut : void createBracket()
+KnockOut : void printMatches(Match[] matches)
+KnockOut : void setNextRound()
+KnockOut : void printMatches()
+KnockOut : Team[] getTeamArray()
+KnockOut : void setWinners(int i)
+KnockOut : Team[] getWinners()
 
 'Team array maybe?
 Match : String name
@@ -48,23 +116,28 @@ Match : Team teams1
 Match : Team team2
 Match : int score1
 Match : int score2
-Match : Match(Team team1, Team team2)
 
-Match : getWinner()
-Match : getTeam1 ()
-Match : getTeam2 ()
-Match : setTeam1()
-Match : setTeam2()
-Match : setScore1()
-Match : setScore2()
+Match : Team getWinner( )
+Match : Team getTeam1()
+Match : Team getTeam2()
+Match : void setTeam1(Team team1)
+Match : void setTeam2(Team team2)
+Match : int getScore1()
+Match : int getScore2()
+Match : void setScore1(int score1)
+Match : void setScore2(int score2)
+Match : String toString()
 
-Team : String Name
-Team : ArrayList <Player>
-Team : int points
-Team : Team(String)
-Team : getName()
-Team : getPlayers()
-Team : getTeamID()
+Team : String name
+Team : ArrayList <Player> players
+Team : String getName()
+Team : void setName(String name)
+Team : ArrayList<Player> getPlayers()
+Team : int getScore()
+Team : setScore(int score)
+Team : void addScore(int score)
+Team : void addPlayer(Player player)
+Team : String toString()
 
 Player : String name
 Player : Player(String)
@@ -74,16 +147,5 @@ UI : getUserInput()
 UI : getUserInput(String)
 UI : getUserInputInt()
 UI : getUserInputInt(String)
-
-Menu : int input
-Menu : menu(Tournament)
-
-PlayerUI : int input
-PlayerUI : playerMenu(Tournament)
-PlayerUI : teamNames(Tournament)
-PlayerUI : playerNames(Team)
-PlayerUI : registrationComplete(Tournament,Team)
-PlayerUI : extraPlayer(Team)
-PlayerUI : lastPlayer(Team)
 
 @enduml
