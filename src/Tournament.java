@@ -8,6 +8,22 @@ public class Tournament {
     protected ArrayList<Team> teams;
     protected boolean closeSignUp;
 
+
+    public void initTeams() {
+        teams.add(new Team("#1"));
+        teams.add(new Team("#2"));
+        teams.add(new Team("#3"));
+        teams.add(new Team("#4"));
+        teams.add(new Team("#5"));
+        teams.add(new Team("#6"));
+        teams.add(new Team("#7"));
+        teams.add(new Team("#8"));
+        teams.add(new Team("#9"));
+        teams.add(new Team("#10"));
+        teams.add(new Team("#11"));
+    }
+
+
     public Tournament(String name){
         this.name=name ;
         teams = new ArrayList<>();
@@ -18,8 +34,11 @@ public class Tournament {
     }
 
     public void printMatches() {
-        for (Match match : matches)
-            System.out.println(match.toString());
+        int i =1;
+        for (Match match : matches) {
+            System.out.println(i + ": " + match.toString());
+            i++;
+        }
     }
 
     public void printTeams() {
@@ -78,12 +97,12 @@ public class Tournament {
     public String toString() {
         String str = "";
         str+= " Navn: " + name;
-        str+= " Tilmedning frist: " + deadline;
-        str+= " Der er " + teams.size() + " hold tilmedte";
+        str+= ". Tilmedning frist: " + deadline;
+        str+= ". Der er " + teams.size() + " hold tilmedte";
         if ( closeSignUp == true )
-        str+= " Tilmedling er slut";
-        else str+= " Tilmedling er åben";
-        return str;
+        str+= ". Tilmedling er slut";
+        else str+= ". Tilmedling er åben";
+        return str + ".";
 
     }
 }

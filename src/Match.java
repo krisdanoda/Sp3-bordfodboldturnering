@@ -7,6 +7,7 @@ public class Match {
     private int score1;
     private int score2;
     private String date;
+
     //private int round;
     public Match(Team t1, Team t2) {
         team1 = t1;
@@ -19,8 +20,14 @@ public class Match {
     @Override
     public String toString() {
         String str = "";
-        str += this.team1.toString() + " <-- MOD --> " + this.team2.toString() +
-                ", " + this.score1 + " - " + this.score2;
+        if (team1 != null)
+            str += this.team1.toString();
+        str += " score: " + score1;
+        str += " <-- MOD --> ";
+        if (team2 != null)
+            str += this.team2.toString();
+        str += " score2: " + this.score2;
+
         return str;
     }
 
@@ -56,10 +63,12 @@ public class Match {
         return score2;
     }
 
-    public Team getWinner( ){
-        if( score1 > score2 )
-            return team1;
-        else
-            return team2;
+    public Team getWinner() {
+        Team winner = null;
+        if (score1 > score2)
+            winner = team1;
+        if (score2 > score1)
+            winner = team2;
+        return winner;
     }
 }

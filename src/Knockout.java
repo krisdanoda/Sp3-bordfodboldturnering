@@ -6,8 +6,7 @@ public class Knockout extends Tournament {
 
     public Knockout(String name) {
         this.name = name;
-        teams = new ArrayList<Team>();
-        int rounds = (int) (Math.log(teams.size()) / Math.log(2)) + 1;
+        teams = new ArrayList<>();
     }
 
     //Create ALL matches from a list of teams. The first rounds a placed first
@@ -21,11 +20,22 @@ public class Knockout extends Tournament {
         for (int i = 0; i < teams.size(); i++) {
             if (i % 2 == 0) {
                 matches[i / 2].setTeam1(teams.get(i));
-            } else if (i % 2 != 0) {
+            } else {
                 matches[((i - 1) / 2)].setTeam2(teams.get(i));
             }
         }
         return matches;
+    }
+
+    public void printBracket(){
+        if( matchesList == null || matchesList.size() == 0)
+            System.out.println("Brackets er ikke lavet endnu");
+
+        for (int i = 0; i < matchesList.size(); i++) {
+            System.out.println(" Runde " + (matchesList.size() - i));
+            for (Match match : matchesList.get(i))
+                System.out.println(match);;
+        }
     }
 
     //Creates our bracket from a list of rounds
@@ -97,33 +107,9 @@ public class Knockout extends Tournament {
         return winners;
     }
 
-    private boolean checkRoundOver( ){
-        for (Match match: matches) {
-            if (match == null)
-                return false;
-        }
-
-        return true;
-    }
-
-    public void initTeams() {
-        teams.add(new Team("#1"));
-        teams.add(new Team("#2"));
-        teams.add(new Team("#3"));
-        teams.add(new Team("#4"));
-        teams.add(new Team("#5"));
-        teams.add(new Team("#6"));
-        teams.add(new Team("#7"));
-        teams.add(new Team("#8"));
-        teams.add(new Team("#9"));
-        teams.add(new Team("#10"));
-        teams.add(new Team("#11"));
-        teams.add(new Team("#12"));
-        teams.add(new Team("#13"));
-        teams.add(new Team("#14"));
 
 
-    }
+
 
 }
 
