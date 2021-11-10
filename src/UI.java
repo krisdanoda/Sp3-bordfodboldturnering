@@ -75,6 +75,7 @@ public class UI {
 
                     break;
                 case 5: // Rediger matches
+                    
                     currentTournament.printMatches();
                     System.out.println(currentTournament.matches.length + ". sæt vinner til næste runde");
 
@@ -86,7 +87,7 @@ public class UI {
                         editMatch(currentTournament.matches[input - 1]);
                     else {
                     }
-
+                    break;
                 case 6:
                     //Return til main menu
                     quit = true;
@@ -133,6 +134,8 @@ public class UI {
         String menuItem1 = "1. Sæt point for hold: " + team1.getName();
         String menuItem2 = "2. Sæt point for hold: " + team2.getName();
         String[] menuItems = {menuItem1, menuItem2};
+
+
         for (String menuItem : menuItems)
             System.out.println(menuItem);
         String msg = "Sæt point for holde";
