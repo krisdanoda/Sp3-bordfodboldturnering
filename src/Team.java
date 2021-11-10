@@ -3,13 +3,15 @@ import java.util.ArrayList;
 public class Team {
 
     private String name;
-    private ArrayList players;
+    private ArrayList<Player> players;
     private int score;
     private int teamID;
     private static int cnt = 0;
     private static int ID = 1;
 
-
+    public Team() {
+        players = new ArrayList<Player>();
+    }
 
     public Team(String name) {
         this.name = name;
@@ -31,6 +33,10 @@ public class Team {
         return name ;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public ArrayList<Player> getPlayers(){
         return players;
     }
@@ -46,6 +52,10 @@ public class Team {
         return teamID;
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
     @Override
     public String toString() {
         String str = "";
@@ -53,6 +63,5 @@ public class Team {
                 ", player1 = " + this.players.get(0) + ", player2 = " + this.players.get(1);
         return str;
     }
-
 
 }

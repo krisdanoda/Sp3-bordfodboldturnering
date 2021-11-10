@@ -1,5 +1,13 @@
 public class Menu {
-    public static void menu(Tournament tournament, Knockout knockout) {
+    private PlayerUI playerUI;
+    private Tournament tournament;
+    private Knockout knockout;
+
+    public Menu(Tournament tournament, Knockout knockout) {
+        this.playerUI = new PlayerUI(tournament);
+    }
+
+    public void menu() {
         int input=0 ;
         input=UI.getUserInputInt("1. Admin\n2. Spiller") ;
         if(input==1){
@@ -8,7 +16,7 @@ public class Menu {
         }
         else if(input==2){
         //Spiller menu
-            PlayerUI.playerMenu(tournament);
+            playerUI.playerMenu();
         }
 
     }

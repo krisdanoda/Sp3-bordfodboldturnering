@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 
 public class PlayerUI {
-    public static void playerMenu(Tournament tournament) {
+    private FileController fileController;
+    private Tournament tournament;
+
+    public PlayerUI(Tournament tournament) {
+        this.tournament = tournament;
+        this.fileController = new FileController(tournament);
+    }
+
+    public void playerMenu() {
         boolean closeSignup = false;
 
         if (closeSignup) {
@@ -28,6 +36,8 @@ public class PlayerUI {
                 input2 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere");
                 if (input2 == 1) {
                     System.out.println("Jeres hold " + team.getName() + " er nu tilmeldt " + tournament.getName() + "en");
+                    fileController.saveTeam(team);
+                    fileController.readTeam();
                 } else if (input2 == 2) {
                     inputS = UI.getUserInput("Angiv navn på næste spiller");
                     team.getPlayers().add(new Player(inputS));

@@ -14,7 +14,6 @@ public class Tournament {
         teams = new ArrayList<>();
     }
 
-
     public String getName() {
         return name;
     }
