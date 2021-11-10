@@ -114,11 +114,11 @@ public class Tournament {
     public String toString() {
         String str = "";
         str+= " Navn: " + name;
-        str+= ". Tilmedning frist: " + deadline;
-        str+= ". Der er " + teams.size() + " hold tilmedte";
+        str+= ". Tilmeldingsfrist: " + deadline;
+        str+= ". Der er " + teams.size() + " hold tilmeldte";
         if ( closeSignUp == true )
-        str+= ". Tilmedling er slut";
-        else str+= ". Tilmedling er åben";
+        str+= ". Tilmelding er slut";
+        else str+= ". Tilmelding er åben";
         return str + ".";
 
     }

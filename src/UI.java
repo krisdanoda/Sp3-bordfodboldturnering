@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
-    static private Match currentMatch;
-    static private ArrayList<Match> currentMatches;
     static private Knockout currentTournament;
     public static int count2=0;
     public static void menu() {
@@ -38,7 +36,12 @@ public class UI {
 
             switch (getUserInputInt()){
                 case 1:
-                    adminTournamentMainMenu();
+                    if(currentTournament!=null) {
+                        adminTournamentMainMenu();
+                    }
+                    else{
+                        System.out.println("Der findes ikke nogen turnering");
+                    }
                     break;
 
 
@@ -121,7 +124,7 @@ public class UI {
             String menuItem2 = "2. ændre på tilmelding frist: " + currentTournament.getDeadline();
             String menuItem3 = "3. Luk tilmelding";
             String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
-            String menuItemQuit = "5. Tilbage";
+            String menuItemQuit = "4. Tilbage";
 
             String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItemQuit};
             for (String menuItem : menuItems)
@@ -139,7 +142,7 @@ public class UI {
                     currentTournament.createMatches();
                     currentTournament.createBracket();
                     break;
-                case 5:
+                case 4:
                     quit2=true;
             }
 
