@@ -137,10 +137,18 @@ public class UI {
                     currentTournament.setDeadline(getUserInput("Ændre tilmeldingsfrist "));
                     break;
                 case 3:
+                    if(currentTournament.teams.size()>=1) {
                     System.out.println("Tilmelding er lukket");
                     currentTournament.setCloseSignUp(true);
                     currentTournament.createMatches();
                     currentTournament.createBracket();
+                    }
+                    else{
+                        System.out.println("Der er ikke nok hold tilmeldt");
+                    }
+
+
+
                     break;
                 case 4:
                     quit2=true;
