@@ -3,30 +3,22 @@ import java.util.ArrayList;
 public class Team {
 
     private String name;
-    private ArrayList players;
+    private ArrayList<Player> players;
     private int score;
-    private int teamID;
-    private static int cnt = 0;
-    private static int ID = 1;
+    //private static int ID = 1;
 
 
 
     public Team(String name) {
         this.name = name;
         players = new ArrayList<Player>();
+        players.add(new Player("1"));
+        players.add(new Player("2"));
         score = 0;
-        //initPlayers();
-        teamID = ID++;
+        //teamID = ID++;
 
     }
 
-
-    /*public void initPlayers() {
-        cnt++;
-        players[0] = "p" + cnt;
-        cnt++;
-        players[1] = "p" + cnt;
-    }*/
     public String getName(){
         return name ;
     }
@@ -34,6 +26,7 @@ public class Team {
     public ArrayList<Player> getPlayers(){
         return players;
     }
+
     public int getScore() {
         return score;
     }
@@ -41,16 +34,16 @@ public class Team {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public int getTeamID() {
-        return teamID;
+    public void addScore(int score) {
+        this.score += score;
     }
+
+
 
     @Override
     public String toString() {
         String str = "";
-        str += "ID = " + getTeamID() + ", HoldNavn = " + this.name +
-                ", player1 = " + this.players.get(0) + ", player2 = " + this.players.get(1);
+        str += this.name;
         return str;
     }
 
