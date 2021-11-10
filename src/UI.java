@@ -63,7 +63,7 @@ public class UI {
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
         String menuItem4 = "4. Se oversigt"; //If only the tournament has started
         String menuItem5 = "5. Rediger kampe";
-        String menuQuit = "6. Return til main menu";
+        String menuQuit = "6. Tilbage";
         String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItem4,menuItem5, menuQuit};
 
 
@@ -99,7 +99,7 @@ public class UI {
 
                     int input = getUserInputInt();
                     if (input == currentTournament.matches.length+1) {
-                        System.out.println("Vinder i " + currentTournament.getName() + " er sæt.");
+                        System.out.println("Vindere i " + currentTournament.getName() + " er sat.");
                         currentTournament.setNextRound();
                     } else if (input > 0 && input <= currentTournament.matches.length)
                         editMatch(currentTournament.matches[input - 1]);
@@ -115,33 +115,35 @@ public class UI {
     }
 
     static private void editTournament() {
+        boolean quit2=false ;
+        while(!quit2) {
+            String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
+            String menuItem2 = "2. ændre på tilmelding frist: " + currentTournament.getDeadline();
+            String menuItem3 = "3. Luk tilmelding";
+            String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
+            String menuItemQuit = "5. Tilbage";
 
-        String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
-        String menuItem2 = "2. ændre på tilmelding frist: " + currentTournament.getDeadline();
-        String menuItem3 = "3. Luk tilmelding";
-        String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
-        String menuItemQuit = "5. Return";
-
-        String[] menuItems = {menuItem1, menuItem2, menuItem3};
-        for (String menuItem : menuItems)
-            System.out.println(menuItem);
-        switch (getUserInputInt()) {
-            case 1:
-                currentTournament.setName(getUserInput("Navn: "));
-                break;
-            case 2:
-                currentTournament.setDeadline(getUserInput("Ændre tilmelding frist "));
-                break;
-            case 3:
-                System.out.println("Tilmelding er lukket");
-                currentTournament.setCloseSignUp(true);
-                currentTournament.createMatches();
-                currentTournament.createBracket();
-                break;
+            String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItemQuit};
+            for (String menuItem : menuItems)
+                System.out.println(menuItem);
+            switch (getUserInputInt()) {
+                case 1:
+                    currentTournament.setName(getUserInput("Navn: "));
+                    break;
+                case 2:
+                    currentTournament.setDeadline(getUserInput("Ændre tilmeldingsfrist "));
+                    break;
+                case 3:
+                    System.out.println("Tilmelding er lukket");
+                    currentTournament.setCloseSignUp(true);
+                    currentTournament.createMatches();
+                    currentTournament.createBracket();
+                    break;
+                case 5:
+                    quit2=true;
+            }
 
         }
-
-
     }
 
 

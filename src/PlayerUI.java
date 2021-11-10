@@ -2,10 +2,8 @@ public class PlayerUI {
 
     public static void playerMenu(Tournament tournament) {
 
-
         int input = 0;
         Team team=new Team("test") ;
-
 
         while(UI.count2==1){
         if (tournament.getIsCloseSignUp()) {
@@ -25,7 +23,7 @@ public class PlayerUI {
                     UI.count2++ ;
             }
                 while(UI.count2==3) {
-                    int input3 = 0;
+                    int input3;
                     input3 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
 
                     if (input3 == 1) {
@@ -57,7 +55,7 @@ public class PlayerUI {
             } else if (input == 2) {
                 while(UI.count2==2) {
                     int count = 1;
-                    int inputA = 0;
+                    int inputA;
 
                     System.out.println("Hvilket hold vil du tilføje en spiller til?");
 
@@ -85,7 +83,7 @@ public class PlayerUI {
         }
     }
     public static Team teamName(Tournament tournament){
-        String inputS2 = "";
+        String inputS2;
 
         inputS2 = UI.getUserInput("Angiv holdnavn:");
         Team team = new Team(inputS2);
@@ -93,7 +91,7 @@ public class PlayerUI {
         return team ;
     }
     public static void playerNames(Team team){
-        String inputS="";
+        String inputS;
 
         inputS = UI.getUserInput("Angiv navn på første spiller:");
         team.getPlayers().add(new Player(inputS));
@@ -105,13 +103,13 @@ public class PlayerUI {
         System.out.println("Jeres hold "+ team.getName()+" er nu tilmeldt " + tournament.getName() + "en");
     }
     public static void extraPlayer(Team team){
-        String inputS="";
+        String inputS;
 
         inputS = UI.getUserInput("Angiv navn på næste spiller");
         team.getPlayers().add(new Player(inputS));
     }
     public static void lastPlayer(Team team){
-        String inputS="" ;
+        String inputS ;
         inputS = UI.getUserInput("Angiv navn på sidste spiller");
         team.getPlayers().add(new Player(inputS));
     }
