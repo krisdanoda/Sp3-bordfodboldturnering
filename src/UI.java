@@ -101,17 +101,20 @@ public class UI {
 
                     break;
                 case 5: // Rediger matches
-                    
-                    currentTournament.printMatches();
-                    System.out.println((currentTournament.matches.length +1) + ": sæt vinder til næste runde");
+                    if(currentTournament.matches!=null) {
+                        currentTournament.printMatches();
+                        System.out.println((currentTournament.matches.length + 1) + ": sæt vinder til næste runde");
 
-                    int input = getUserInputInt();
-                    if (input == currentTournament.matches.length+1) {
-                        System.out.println("Vindere i " + currentTournament.getName() + " er sat.");
-                        currentTournament.setNextRound();
-                    } else if (input > 0 && input <= currentTournament.matches.length)
-                        editMatch(currentTournament.matches[input - 1]);
-
+                        int input = getUserInputInt();
+                        if (input == currentTournament.matches.length + 1) {
+                            System.out.println("Vindere i " + currentTournament.getName() + " er sat.");
+                            currentTournament.setNextRound();
+                        } else if (input > 0 && input <= currentTournament.matches.length)
+                            editMatch(currentTournament.matches[input - 1]);
+                    }
+                    else{
+                        System.out.println("Der er ikke oprettet nogen kampe");
+                    }
                     break;
                 case 6:
                     //Return til main menu
