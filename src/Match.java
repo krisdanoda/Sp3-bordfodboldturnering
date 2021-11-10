@@ -7,8 +7,12 @@ public class Match {
     private String date;
 
     public Match() {
+<<<<<<< Updated upstream
         this.name = "x";
         this.date = "00 / 00";
+=======
+        this.name = "ukendt";
+>>>>>>> Stashed changes
     }
 
     public Match(Team t1, Team t2) {
@@ -40,14 +44,18 @@ public class Match {
         this.score1 = score;
     }
 
+<<<<<<< Updated upstream
     public void setScore2(int score) {
         this.score2 = score;
     }
 
+=======
+>>>>>>> Stashed changes
     public int getScore2() {
         return score2;
     }
 
+<<<<<<< Updated upstream
     public String getDate() {
         return date;
     }
@@ -62,10 +70,27 @@ public class Match {
 
     public void setName(String name) {
         this.name = name;
+=======
+    public void setScore2(int score) {
+        this.score2 = score;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+>>>>>>> Stashed changes
     }
 
     public Team getWinner() {
         if (this.score1 > this.score2) {
+<<<<<<< Updated upstream
             return team1;
         }
         else {
@@ -84,4 +109,15 @@ public class Match {
 
      */
 
+=======
+            return this.team1;
+        }
+        else if (this.score1 < this.score2) {
+            return this.team2;
+        }
+        else {
+            return null;
+        }
+    }
+>>>>>>> Stashed changes
 }

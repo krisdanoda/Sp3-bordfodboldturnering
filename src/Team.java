@@ -4,17 +4,24 @@ public class Team {
 
     private String name;
     private ArrayList<Player> players;
+<<<<<<< Updated upstream
     private int points;
+=======
+    private int score;
+>>>>>>> Stashed changes
     private int teamID;
     private boolean hasPlayedExtra = false;
     private static int cnt = 1;
     private static int ID = 1;
 
+<<<<<<< Updated upstream
     public Team() {
         this.teamID = ID;
         ID++;
     }
 
+=======
+>>>>>>> Stashed changes
     public Team(String name) {
         this.name = name;
         players = new ArrayList<Player>();
@@ -55,6 +62,7 @@ public class Team {
     @Override
     public String toString() {
         String str = "";
+<<<<<<< Updated upstream
         int t = 0;
         str += "ID = " + getTeamID() + ": " + this.name;
         for (Player p : players) {
@@ -68,6 +76,9 @@ public class Team {
             t++;
         }
 
+=======
+        str += "ID = " + getTeamID() + ", HoldNavn = " + this.name;
+>>>>>>> Stashed changes
         return str;
     }
 

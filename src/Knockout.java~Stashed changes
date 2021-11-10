@@ -1,0 +1,165 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Knockout extends Tournament{
+    private Team[][] roundTeamArray;
+    private ArrayList<Match[]> roundMatchList;
+    private int rounds;
+    private boolean extraMatchFlag;
+    private Team unknownTeam = new Team("Ukendt");
+    private int[] teamsNumber;
+    private int[] matchesNumber;
+
+    public Knockout() {
+        extraMatchFlag = false;
+        roundMatchList = new ArrayList<Match[]>();
+        teams = new ArrayList<Team>();
+        initTeams();
+        rounds = (int) (Math.log(teams.size()) / Math.log(2));//antal kamprunder
+        roundTeamArray = new Team[rounds+1][];
+    }
+
+    public Match[] createMatches(Team[] teamArr) {
+        int arrLen = teamArr.length;
+        Match[] matches = new Match[numberOfMatches(teamArr)];
+        int j = (int) (arrLen / 2);
+        for (int i = 0; i < (arrLen / 2); i++) {
+            matches[i] = new Match(teams.get(i), teams.get(j));
+            j++;
+        }
+        if (extraMatchFlag) {
+            //Denne skal ændres, da den nu bare tager næstsidste hold og sætter sammen med sidste hold
+            //matches[matches.length - 1] = new Match(teams.get(teamArr.length - 2), teams.get(teamArr.length - 1));
+            matches[matches.length - 1] = new Match(unknownTeam, teams.get(teamArr.length - 1));
+            //matches[matches.length-1].setTeam1(teamArr[teamArr.length-2]);
+            extraMatchFlag = false;
+        }
+        this.roundMatchList.add(matches);
+        return matches;
+    }
+
+    public int numberOfMatches(Team[] teams) {
+        int arrLen = teams.length;
+        if (arrLen % 2 == 1) {
+            this.extraMatchFlag = true;
+            return (arrLen / 2) + 1;
+        }
+        else {
+            return arrLen / 2;
+        }
+    }
+
+    public int[] calcTeamsTree(Team[] startTeams) {
+        int n = startTeams.length;
+        int[] tmp = new int[this.rounds + 1];
+        tmp[0] = n;
+        for (int i = 1; i <= this.rounds; i++) {
+            n /= 2;
+            tmp[i] = n;
+        }
+        this.teamsNumber = tmp;
+        return tmp;
+    }
+
+    //Beregner et heltals-array = antal kampe i hver runde
+    public int[] calcMatchTree(int[] nTeams) {
+        int[] mn = new int[nTeams.length - 1];
+        for (int i = 0; i < nTeams.length - 1; i++) {
+            if (nTeams[i] % 2 == 1 && nTeams[i] > 1) {
+                mn[i] = (nTeams[i] / 2) + 1;
+                this.extraMatchFlag = true;
+            }
+            else {
+                mn[i] = nTeams[i] / 2;
+            }
+        }
+        this.matchesNumber = mn;
+        return mn;
+    }
+
+    public void printMatches(Match[] matches) {
+        System.out.println("Kampe:");
+        for (Match m : matches) {
+            System.out.println(m.toString());
+        }
+    }
+
+    public void printTeams(Team[] teamArray) {
+        for (Team t : teamArray) {
+            System.out.println(t.toString());
+        }
+        System.out.println("Antal runder = " + rounds);
+    }
+
+    public void printProgram() {
+        String str1 = "";
+
+        str1 += "Hold: ";
+        for (int i = 0; i < this.roundMatchList.size(); i++) {
+            for (int j = 0; j < this.teamsNumber[i]; j++) {
+                //System.out.println(this.teamsNumber[i]);
+                str1 += "\t" + this.roundTeamArray[i][j].getName();
+                if (j < this.teamsNumber[i]-1) {
+                    str1 += " ";
+                }
+            }
+            str1 += "\n";
+
+            for (int j = 0; j < this.roundMatchList.get(i).length; j++) {
+                str1 += "Dato: " + this.roundMatchList.get(i)[j].getDate() + ": " +
+                        this.roundMatchList.get(i)[j].getTeam1().getName() + " - " +
+                        this.roundMatchList.get(i)[j].getTeam2().getName() + " " +
+                        this.roundMatchList.get(i)[j].getScore1() + " - " +
+                        this.roundMatchList.get(i)[j].getScore2() + "\n";
+            }
+
+        }
+        /*
+        int n = this.roundMatchList.size();
+        for (int i = n; i < this.matchesNumber[i]; i++) {
+
+        }
+
+         */
+        System.out.print(str1);
+
+    }
+
+    public Team[] getTeamArray() {
+        Team[] teamArray = new Team[this.teams.size()];
+        for (int i = 0; i < this.teams.size(); i++) {
+            teamArray[i] = teams.get(i);
+        }
+        //this.roundTeamArray[0] = teamArray;
+        return teamArray;
+    }
+
+    public ArrayList<Match[]> getRoundMatchList() {
+        return roundMatchList;
+    }
+
+    public Team[][] getRoundTeamArray() {
+        return this.roundTeamArray;
+    }
+
+    public void setRoundTeamArray(Team[] t, int idx) {
+        this.roundTeamArray[idx] = t;
+    }
+
+
+    private void initTeams() {
+        teams.add(new Team("#1"));
+        teams.add(new Team("#2"));
+        teams.add(new Team("#3"));
+        teams.add(new Team("#4"));
+        teams.add(new Team("#5"));
+        teams.add(new Team("#6"));
+        teams.add(new Team("#7"));
+        teams.add(new Team("#8"));
+        teams.add(new Team("#9"));
+
+    }
+
+}
+
+
