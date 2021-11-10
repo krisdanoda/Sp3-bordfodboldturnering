@@ -1,2 +1,11 @@
 out/production/Sp3/*
 *.class
+out/production/Sp3/Knockout.class
+out/production/Sp3/Main.class
+out/production/Sp3/Match.class
+out/production/Sp3/Menu.class
+out/production/Sp3/Player.class
+out/production/Sp3/PlayerUI.class
+out/production/Sp3/Team.class
+out/production/Sp3/Tournament.class
+out/production/Sp3/UI.class
