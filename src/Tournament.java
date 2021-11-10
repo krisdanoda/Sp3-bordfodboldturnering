@@ -23,6 +23,19 @@ public class Tournament {
         teams.add(new Team("#11"));
     }
 
+    public void setScore( ){
+        for (Team team: teams)
+            team.setScore(0);
+
+        for (Match match: matches) {
+            if (match.getTeam1() != null && match.getTeam2() != null) {
+                match.getTeam1().addScore(match.getScore1() - match.getScore2());
+                match.getTeam2().addScore(match.getScore2() - match.getScore1());
+            }
+        }
+
+
+    }
 
     public Tournament(String name){
         this.name=name ;

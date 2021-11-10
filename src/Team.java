@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Team {
 
     private String name;
-    private ArrayList players;
+    private ArrayList<Player> players;
     private int score;
     //private static int ID = 1;
 
@@ -34,6 +34,11 @@ public class Team {
     public void setScore(int score) {
         this.score = score;
     }
+    public void addScore(int score) {
+        this.score += score;
+    }
+
+
 
     @Override
     public String toString() {
