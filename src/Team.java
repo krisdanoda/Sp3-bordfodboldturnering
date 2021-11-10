@@ -5,9 +5,6 @@ public class Team {
     private String name;
     private ArrayList<Player> players;
     private int score;
-    private int teamID;
-    private static int cnt = 0;
-    private static int ID = 1;
 
     public Team() {
         players = new ArrayList<Player>();
@@ -17,18 +14,9 @@ public class Team {
         this.name = name;
         players = new ArrayList<Player>();
         score = 0;
-        //initPlayers();
-        teamID = ID++;
 
     }
 
-
-    /*public void initPlayers() {
-        cnt++;
-        players[0] = "p" + cnt;
-        cnt++;
-        players[1] = "p" + cnt;
-    }*/
     public String getName(){
         return name ;
     }
@@ -40,6 +28,7 @@ public class Team {
     public ArrayList<Player> getPlayers(){
         return players;
     }
+
     public int getScore() {
         return score;
     }
@@ -47,9 +36,8 @@ public class Team {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public int getTeamID() {
-        return teamID;
+    public void addScore(int score) {
+        this.score += score;
     }
 
     public void addPlayer(Player player) {
@@ -58,10 +46,6 @@ public class Team {
 
     @Override
     public String toString() {
-        String str = "";
-        str += "ID = " + getTeamID() + ", HoldNavn = " + this.name +
-                ", player1 = " + this.players.get(0) + ", player2 = " + this.players.get(1);
-        return str;
+        return "PLayer: " + name;
     }
-
 }
