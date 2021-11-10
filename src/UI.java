@@ -2,20 +2,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
-    static private Knockout currentTournament;
-    public static int count2=0;
-    public static void menu() {
+    private Knockout currentTournament;
+    public int count2=0;
+
+    public UI(Knockout currentTournament) {
+        this.currentTournament = currentTournament;
+    }
+
+    public void menu() {
         int input=0 ;
 
         while(count2==0) {
-            input = UI.getUserInputInt("1. Admin\n2. Spiller\n3. Afslut");
+            input = getUserInputInt("1. Admin\n2. Spiller\n3. Afslut");
             if (input == 1) {
                 //Admin Menu
-                UI.adminMainMenu();
+                adminMainMenu();
             } else if (input == 2) {
                 //Spiller menu
                 count2++ ;
-                PlayerUI.playerMenu(currentTournament);
+                playerMenu(currentTournament);
             }
             else if (input == 3){
                 count2=9;
@@ -24,7 +29,7 @@ public class UI {
     }
 
 
-    static void adminMainMenu(){
+    void adminMainMenu(){
         String menuItem1 = "1. Se turnering";
         String menuItem2 = "2. Lav turnering";
         String menuItem3 = "3. Tilbage";
@@ -59,7 +64,7 @@ public class UI {
         }
     }
 
-    static void adminTournamentMainMenu() {
+    void adminTournamentMainMenu() {
         boolean quit = false;
         String menuItem1 = "1. Se tilmeldte hold";
         String menuItem2 = "2. Se info om turnering";
@@ -75,7 +80,7 @@ public class UI {
             for (String menuItem : menuItems)
                 System.out.println(menuItem);
 
-            switch (UI.getUserInputInt()) {
+            switch (getUserInputInt()) {
                 case 1:
                     //1.Se tilmeldte hold
                     System.out.println(currentTournament.teams.size());
@@ -117,7 +122,7 @@ public class UI {
         }
     }
 
-    static private void editTournament() {
+     private void editTournament() {
         boolean quit2=false ;
         while(!quit2) {
             String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
@@ -146,19 +151,15 @@ public class UI {
                     else{
                         System.out.println("Der er ikke nok hold tilmeldt");
                     }
-
-
-
                     break;
                 case 4:
                     quit2=true;
             }
-
         }
     }
 
 
-    static private void editMatch(Match match) {
+     private void editMatch(Match match) {
         Team team1 = match.getTeam1();
         Team team2 = match.getTeam2();
 
@@ -170,7 +171,7 @@ public class UI {
         for (String menuItem : menuItems)
             System.out.println(menuItem);
         String msg = "Sæt point for hold";
-        switch (UI.getUserInputInt()) {
+        switch (getUserInputInt()) {
             case 1:
                 match.setScore1(getUserInputInt("Sæt point for hold " + team1));
                 break;
@@ -182,13 +183,13 @@ public class UI {
 
 
     //gets user input and returns input as a string. Takes a message as an input which it prints out
-    static String getUserInput(String msg) {
+    private String getUserInput(String msg) {
         System.out.println(msg);
         return getUserInput();
     }
 
     //gets user input and returns input as a string
-    static String getUserInput() {
+    String getUserInput() {
         String input;
         Scanner scan = new Scanner(System.in);
         input = scan.nextLine();
@@ -196,7 +197,7 @@ public class UI {
     }
 
     //gets user input and returns an int
-    static int getUserInputInt() {
+    int getUserInputInt() {
         int input;
         Scanner scan = new Scanner(System.in);
         //Check to see if its valid int
@@ -210,16 +211,128 @@ public class UI {
         return input;
     }
 
-    static int intGetUserIntWithin(int menuItemsSize) {
+    int intGetUserIntWithin(int menuItemsSize) {
         int input;
         return getUserInputInt();
     }
 
 
     //gets user input and returns it as a string
-    static int getUserInputInt(String msg) {
+    int getUserInputInt(String msg) {
         System.out.println(msg);
         return getUserInputInt();
     }
+    public void playerMenu(Knockout tournament) {
+        int input = 0;
+        Team team=new Team("test") ;
+        UI ui = new UI(tournament);
 
+        while(count2==1){
+            if (tournament.getIsCloseSignUp()) {
+                System.out.println("Der er lukket for tilmelding");
+                count2=0 ;
+            } else {
+
+                input = getUserInputInt("1. Opret nyt hold\n2. Tilmeld spiller til eksisterende hold\n3. Tilbage");
+                count2++ ;
+            }
+            if (input == 1) {
+                while(count2==2){
+
+                    team = teamName(tournament);
+
+                    playerNames(team);
+                    count2++ ;
+                }
+                while(count2==3) {
+                    int input3;
+                    input3 = getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
+
+                    if (input3 == 1) {
+                        registrationComplete(tournament, team);
+                        count2=0 ;
+                    } else if (input3 == 2) {
+                        extraPlayer(team);
+
+                        input3 = getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
+                        if (input3 == 1) {
+                            registrationComplete(tournament, team);
+                            count2=0;
+
+                        } else if (input3 == 2) {
+                            lastPlayer(team);
+
+                            registrationComplete(tournament, team);
+                            count2=0 ;
+                        }
+                        else if (input3==3){
+                            count2=0;
+                        }
+                    }
+                    else if (input3==3){
+                        count2=0 ;
+                    }
+                    count2++ ;
+                }
+            } else if (input == 2) {
+                while(count2==2) {
+                    int count = 1;
+                    int inputA;
+
+                    System.out.println("Hvilket hold vil du tilføje en spiller til?");
+
+                    for (int i = 0; i < tournament.getTeams().size(); i++) {
+
+                        System.out.println(count + ". " + tournament.getTeams().get(i).getName());
+                        count++;
+                    }
+                    System.out.println(count + ". Tilbage");
+
+                    inputA = getUserInputInt();
+                    count2++ ;
+                    if(inputA!=count){
+                        extraPlayer(tournament.getTeams().get(inputA-1));
+                        count2=0;
+                    }
+                    else{
+                        count2=1 ;
+                    }
+                }
+            }
+            else if(input==3){
+                count2=0 ;
+            }
+        }
+    }
+    public Team teamName(Tournament tournament){
+        String inputS2;
+
+        inputS2 = getUserInput("Angiv holdnavn:");
+        Team team = new Team(inputS2);
+        tournament.addTeam(team);
+        return team ;
+    }
+    public void playerNames(Team team){
+        String inputS;
+
+        inputS = getUserInput("Angiv navn på første spiller:");
+        team.getPlayers().add(new Player(inputS));
+
+        inputS = getUserInput("Angiv navn på næste spiller");
+        team.getPlayers().add(new Player(inputS));
+    }
+    public void registrationComplete(Tournament tournament, Team team){
+        System.out.println("Jeres hold "+ team.getName()+" er nu tilmeldt " + tournament.getName() + "en");
+    }
+    public void extraPlayer(Team team){
+        String inputS;
+
+        inputS = getUserInput("Angiv navn på næste spiller");
+        team.getPlayers().add(new Player(inputS));
+    }
+    public void lastPlayer(Team team){
+        String inputS ;
+        inputS = getUserInput("Angiv navn på sidste spiller");
+        team.getPlayers().add(new Player(inputS));
+    }
 }
