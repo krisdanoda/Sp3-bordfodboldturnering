@@ -1,29 +1,34 @@
 import java.util.ArrayList;
 
 public class PlayerUI {
+
     public static void playerMenu(Tournament tournament) {
         boolean closeSignup = false;
-        int count2=0 ;
+
         int input = 0;
         Team team=new Team("test") ;
+        Team team2=new Team("test2") ;
+        tournament.addTeam(team);
+        tournament.addTeam(team2);
 
-        while(count2==0){
+        while(Menu.count2==1){
         if (closeSignup) {
             System.out.println("Der er lukket for tilmelding");
+            Menu.count2=0 ;
         } else {
 
-            input = UI.getUserInputInt("1. Opret nyt hold\n2. Tilmeld spiller til eksisterende hold");
-            count2++ ;
+            input = UI.getUserInputInt("1. Opret nyt hold\n2. Tilmeld spiller til eksisterende hold\n3. Tilbage");
+            Menu.count2++ ;
         }
             if (input == 1) {
-                while(count2==1){
+                while(Menu.count2==2){
 
                 team = teamName(tournament);
 
                 playerNames(team);
-                count2++ ;
+                    Menu.count2++ ;
             }
-                while(count2==2) {
+                while(Menu.count2==3) {
                     int input3 = 0;
                     input3 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
 
@@ -44,31 +49,36 @@ public class PlayerUI {
                         }
                     }
                     else if (input3==3){
-                        count2=-1 ;
+                        Menu.count2=0 ;
                     }
-                count2++ ;
+                    Menu.count2++ ;
                 }
             } else if (input == 2) {
-                while(count2==1) {
+                while(Menu.count2==2) {
                     int count = 1;
                     int inputA = 0;
-                    String inputS = "";
+
+                    System.out.println("Hvilket hold vil du tilføje en spiller til?");
 
                     for (int i = 0; i < tournament.getTeams().size(); i++) {
 
-                        System.out.println(count + ". " + tournament.getTeams().get(i));
+                        System.out.println(count + ". " + tournament.getTeams().get(i).getName());
                         count++;
                     }
                     System.out.println(count + ". Tilbage");
 
-                    inputA = UI.getUserInputInt("Hvilket hold vil du tilføje en spiller til:");
+                    inputA = UI.getUserInputInt();
+                    Menu.count2++ ;
                     if(inputA!=count){
                         extraPlayer(tournament.getTeams().get(inputA-1));
                     }
                     else{
-                        count2=0 ;
+                        Menu.count2=1 ;
                     }
                 }
+            }
+            else if(input==3){
+                Menu.count2=0 ;
             }
         }
     }
