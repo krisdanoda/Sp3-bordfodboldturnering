@@ -1,60 +1,61 @@
-import java.util.ArrayList;
-
 public class PlayerUI {
 
     public static void playerMenu(Tournament tournament) {
-        boolean closeSignup = false;
+
 
         int input = 0;
         Team team=new Team("test") ;
-        Team team2=new Team("test2") ;
-        tournament.addTeam(team);
-        tournament.addTeam(team2);
 
-        while(Menu.count2==1){
-        if (closeSignup) {
+
+        while(UI.count2==1){
+        if (tournament.getIsCloseSignUp()) {
             System.out.println("Der er lukket for tilmelding");
-            Menu.count2=0 ;
+            UI.count2=0 ;
         } else {
 
             input = UI.getUserInputInt("1. Opret nyt hold\n2. Tilmeld spiller til eksisterende hold\n3. Tilbage");
-            Menu.count2++ ;
+            UI.count2++ ;
         }
             if (input == 1) {
-                while(Menu.count2==2){
+                while(UI.count2==2){
 
                 team = teamName(tournament);
 
                 playerNames(team);
-                    Menu.count2++ ;
+                    UI.count2++ ;
             }
-                while(Menu.count2==3) {
+                while(UI.count2==3) {
                     int input3 = 0;
                     input3 = UI.getUserInputInt("1. Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
 
                     if (input3 == 1) {
                         registrationComplete(tournament, team);
-
+                        UI.count2=0 ;
                     } else if (input3 == 2) {
                         extraPlayer(team);
 
-                        input3 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere");
+                        input3 = UI.getUserInputInt("1.Fuldfør tilmelding\n2. Tilføj flere spillere\n3. Tilbage");
                         if (input3 == 1) {
                             registrationComplete(tournament, team);
+                            UI.count2=0;
 
                         } else if (input3 == 2) {
                             lastPlayer(team);
 
                             registrationComplete(tournament, team);
+                            UI.count2=0 ;
+                        }
+                        else if (input3==3){
+                            UI.count2=0;
                         }
                     }
                     else if (input3==3){
-                        Menu.count2=0 ;
+                        UI.count2=0 ;
                     }
-                    Menu.count2++ ;
+                    UI.count2++ ;
                 }
             } else if (input == 2) {
-                while(Menu.count2==2) {
+                while(UI.count2==2) {
                     int count = 1;
                     int inputA = 0;
 
@@ -68,17 +69,18 @@ public class PlayerUI {
                     System.out.println(count + ". Tilbage");
 
                     inputA = UI.getUserInputInt();
-                    Menu.count2++ ;
+                    UI.count2++ ;
                     if(inputA!=count){
                         extraPlayer(tournament.getTeams().get(inputA-1));
+                        UI.count2=0;
                     }
                     else{
-                        Menu.count2=1 ;
+                        UI.count2=1 ;
                     }
                 }
             }
             else if(input==3){
-                Menu.count2=0 ;
+                UI.count2=0 ;
             }
         }
     }

@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Tournament tournament = new Tournament("Bordfodbold-knockoutturnering");
         Knockout knockout = new Knockout(tournament.getName());
-        Menu.menu(tournament, knockout);
+        UI.menu();
     }
 
 }

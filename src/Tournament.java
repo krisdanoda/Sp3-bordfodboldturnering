@@ -55,6 +55,10 @@ public class Tournament {
         this.closeSignUp = closeSignUp;
     }
 
+    public boolean getIsCloseSignUp() {
+        return closeSignUp;
+    }
+
     public Match getMatch(int index){
         if (index > matches.length-1 || index <0) {
             System.out.println("E Index out of bounds: " + index );

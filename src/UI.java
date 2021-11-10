@@ -5,15 +5,34 @@ public class UI {
     static private Match currentMatch;
     static private ArrayList<Match> currentMatches;
     static private Knockout currentTournament;
+    public static int count2=0;
+    public static void menu() {
+        int input=0 ;
 
+        while(count2==0) {
+            input = UI.getUserInputInt("1. Admin\n2. Spiller\n3. Afslut");
+            if (input == 1) {
+                //Admin Menu
+                UI.adminMainMenu();
+            } else if (input == 2) {
+                //Spiller menu
+                count2++ ;
+                PlayerUI.playerMenu(currentTournament);
+            }
+            else if (input == 3){
+                count2=9;
+            }
+        }
+    }
 
 
     static void adminMainMenu(){
         String menuItem1 = "1. Se turnering";
         String menuItem2 = "2. Lav turnering";
-        String menuItem3 = "3. quit";
+        String menuItem3 = "3. Tilbage";
         String[] menuItems = {menuItem1, menuItem2, menuItem3};
-        while (true) {
+        boolean quit = false;
+        while (!quit) {
             for (String menuItem: menuItems)
                 System.out.println(menuItem);
 
@@ -26,11 +45,11 @@ public class UI {
                 case 2:
                     System.out.println("Skriv navn til turnering");
                     currentTournament = new Knockout(getUserInput());
-                    currentTournament.initTeams();
-                    System.out.println(currentTournament.teams.size());
+                    //currentTournament.initTeams();
                     break;
 
                 case 3:
+                    quit = true;
                     break;
 
             }
@@ -39,7 +58,6 @@ public class UI {
 
     static void adminTournamentMainMenu() {
         boolean quit = false;
-        System.out.println(currentTournament.teams.size());
         String menuItem1 = "1. Se tilmeldte hold";
         String menuItem2 = "2. Se info om turnering";
         String menuItem3 = "3. Rediger turnering"; //Change name, change date, close deadline
@@ -77,16 +95,15 @@ public class UI {
                 case 5: // Rediger matches
                     
                     currentTournament.printMatches();
-                    System.out.println(currentTournament.matches.length + ". sæt vinner til næste runde");
+                    System.out.println((currentTournament.matches.length +1) + ": sæt vinder til næste runde");
 
                     int input = getUserInputInt();
-                    if (input == currentTournament.matches.length) {
+                    if (input == currentTournament.matches.length+1) {
                         System.out.println("Vinder i " + currentTournament.getName() + " er sæt.");
                         currentTournament.setNextRound();
-                    } else if (input > 0 || input <= currentTournament.matches.length)
+                    } else if (input > 0 && input <= currentTournament.matches.length-1)
                         editMatch(currentTournament.matches[input - 1]);
-                    else {
-                    }
+
                     break;
                 case 6:
                     //Return til main menu
@@ -103,7 +120,7 @@ public class UI {
         String menuItem2 = "2. ændre på tilmedling frist: " + currentTournament.getDeadline();
         String menuItem3 = "3. Luk tilmedling";
         String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
-        String menuItemQuit = "Return";
+        String menuItemQuit = "5. Return";
 
         String[] menuItems = {menuItem1, menuItem2, menuItem3};
         for (String menuItem : menuItems)
@@ -121,6 +138,7 @@ public class UI {
                 currentTournament.createMatches();
                 currentTournament.createBracket();
                 break;
+
         }
 
 
