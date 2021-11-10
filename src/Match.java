@@ -22,11 +22,16 @@ public class Match {
         String str = "";
         if (team1 != null)
             str += this.team1.toString();
+        else
+            str += "Ukendt hold ";
         str += ": "+score1;
         str += " < vs > ";
         if (team2 != null)
             str += this.team2.toString();
+        else
+            str += "Ukendt hold ";
         str += ": "+this.score2;
+
 
         return str;
     }

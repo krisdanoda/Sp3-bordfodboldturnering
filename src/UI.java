@@ -83,14 +83,10 @@ public class UI {
             switch (getUserInputInt()) {
                 case 1:
                     //1.Se tilmeldte hold
-                    System.out.println(currentTournament.teams.size());
                     currentTournament.printTeams();
-
-
                     break;
                 case 2:
                     // 2. se info om turnering
-                    //todo: Make a tostring for tournament //this is done :)
                     System.out.println(currentTournament.toString());
                     break;
                 case 3: //3. Rediger turnering
@@ -110,6 +106,7 @@ public class UI {
                             System.out.println("Vindere i " + currentTournament.getName() + " er sat.");
                             currentTournament.setNextRound();
                         } else if (input > 0 && input <= currentTournament.matches.length)
+
                             editMatch(currentTournament.matches[input - 1]);
                     }
                     else{
@@ -163,25 +160,30 @@ public class UI {
 
 
      private void editMatch(Match match) {
-        Team team1 = match.getTeam1();
-        Team team2 = match.getTeam2();
+        if ( match.getTeam1() == null || match.getTeam2() == null)
+            System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
+           else {
+            Team team1 = match.getTeam1();
+            Team team2 = match.getTeam2();
 
-        String menuItem1 = "1. Sæt point for hold: " + team1.getName();
-        String menuItem2 = "2. Sæt point for hold: " + team2.getName();
-        String[] menuItems = {menuItem1, menuItem2};
+            String menuItem1 = "1. Sæt point for hold: " + team1.getName();
+            String menuItem2 = "2. Sæt point for hold: " + team2.getName();
+            String[] menuItems = {menuItem1, menuItem2};
 
 
-        for (String menuItem : menuItems)
-            System.out.println(menuItem);
-        String msg = "Sæt point for hold";
-        switch (getUserInputInt()) {
-            case 1:
-                match.setScore1(getUserInputInt("Sæt point for hold " + team1));
-                break;
-            case 2:
-                match.setScore2(getUserInputInt("Sæt point for hold " + team2));
-                break;
+            for (String menuItem : menuItems)
+                System.out.println(menuItem);
+            String msg = "Sæt point for hold";
+            switch (getUserInputInt()) {
+                case 1:
+                    match.setScore1(getUserInputInt("Sæt point for hold " + team1));
+                    break;
+                case 2:
+                    match.setScore2(getUserInputInt("Sæt point for hold " + team2));
+                    break;
+            }
         }
+
     }
 
 

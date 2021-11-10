@@ -32,7 +32,7 @@ public class Knockout extends Tournament {
             System.out.println("Brackets er ikke lavet endnu");
 
         for (int i = 0; i < matchesList.size(); i++) {
-            System.out.println(" Runde " + (matchesList.size() - i));
+            System.out.println("           Runde " + (matchesList.size() - i));
             for (Match match : matchesList.get(i))
                 System.out.println(match);;
         }
