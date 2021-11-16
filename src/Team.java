@@ -5,18 +5,22 @@ public class Team {
     private String name;
     private ArrayList<Player> players;
     private int score;
-    //private static int ID = 1;
-
+    private static int ID = 1;
+    private int  teamID;
 
 
     public Team(String name) {
         this.name = name;
         players = new ArrayList<Player>();
-        players.add(new Player("1"));
-        players.add(new Player("2"));
         score = 0;
-        //teamID = ID++;
+        this.teamID = ID++;
 
+    }
+
+    public Team(int ID, String name, int Score){
+        this.teamID = ID;
+        this.name = name;
+        this.score = Score;
     }
 
     public String getName(){

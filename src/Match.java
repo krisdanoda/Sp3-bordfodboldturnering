@@ -14,6 +14,15 @@ public class Match {
         team2 = t2;
     }
 
+    public Match(int Id, Team t1, Team t2, int score1, int score2, String date) {
+        team1 = t1;
+        team2 = t2;
+        this.score1 = score1;
+        this.score2 = score2;
+        this.date = date;
+
+    }
+
     public Match() {
     }
 
