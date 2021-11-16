@@ -95,22 +95,9 @@ public class Knockout extends Tournament {
         return teamArray;
     }
 
-    public void setWinners(int i) {
-        for (Match match : matchesList.get(i))
-            match.setScore1(10);
+    public ArrayList<Match[]> getMatchesList() {
+        return matchesList;
     }
-
-    public Team[] getWinners() {
-        Team winners[] = new Team[matches.length];
-        for ( int i = 0; i < winners.length; i++)
-            winners[i] = matches[i].getWinner();
-        return winners;
-    }
-
-
-
-
-
 }
 
 

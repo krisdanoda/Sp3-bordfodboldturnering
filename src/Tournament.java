@@ -10,17 +10,27 @@ public class Tournament {
 
 
     public void initTeams() {
-        teams.add(new Team("#1"));
-        teams.add(new Team("#2"));
-        teams.add(new Team("#3"));
-        teams.add(new Team("#4"));
-        teams.add(new Team("#5"));
-        teams.add(new Team("#6"));
-        teams.add(new Team("#7"));
-        teams.add(new Team("#8"));
-        teams.add(new Team("#9"));
-        teams.add(new Team("#10"));
-        teams.add(new Team("#11"));
+        teams.add(new Team("Hippo"));
+        teams.add(new Team("Turtle"));
+        teams.add(new Team("Anglerfish"));
+        teams.add(new Team("Duck"));
+        teams.add(new Team("AntEater"));
+        teams.add(new Team("Leopon"));
+        teams.add(new Team("Mallard"));
+        teams.add(new Team("Shark"));
+        teams.add(new Team("Rabbit"));
+        teams.add(new Team("Dragon"));
+        teams.add(new Team("Dog"));
+        teams.add(new Team("Gorilla"));
+        teams.add(new Team("Panther" ));
+        teams.add(new Team("Lemur"));
+        teams.add(new Team("Squirrel"));
+        teams.add(new Team("mouse"));
+        teams.add(new Team("Meerkat"));
+        teams.add(new Team("Owl"));
+        teams.add(new Team("Phoenix"));
+
+
     }
 
     public void setScore( ){

@@ -21,6 +21,7 @@ public class Match {
     public String toString() {
         String str = "";
         if (team1 != null)
+
             str += this.team1.toString();
         else
             str += "Ukendt hold ";

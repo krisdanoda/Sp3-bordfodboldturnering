@@ -53,7 +53,8 @@ public class UI {
                 case 2:
                     System.out.println("Skriv navn til turnering");
                     currentTournament = new Knockout(getUserInput());
-                    //currentTournament.initTeams();
+                    currentTournament.initTeams();
+
                     break;
 
                 case 3:
@@ -94,7 +95,7 @@ public class UI {
                     break;
                 case 4: // Se Kamp Oversigt
                     currentTournament.printBracket();
-
+                    Frame f = new Frame(currentTournament);
                     break;
                 case 5: // Rediger matches
                     if(currentTournament.matches!=null) {
@@ -160,9 +161,9 @@ public class UI {
 
 
      private void editMatch(Match match) {
-        if ( match.getTeam1() == null || match.getTeam2() == null)
+        if ( match.getTeam1() == null || match.getTeam2() == null) {
             System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
-           else {
+        }else {
             Team team1 = match.getTeam1();
             Team team2 = match.getTeam2();
 
