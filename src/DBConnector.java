@@ -4,13 +4,14 @@ import java.util.ArrayList;
 public class DBConnector implements IO{
 
     // database URL
-    static final String DB_URL = "jdbc:mysql://localhost/Sp3"; //todo:create database
+    static final String DB_URL = "jdbc:mysql://localhost/sp3"; //todo:create database
 
     //  Database credentials
     static final String USER = "root";
     static final String PASS = "";
     private ArrayList<Team> teamData = new ArrayList<>();
     private ArrayList<Match> matchList = new ArrayList<>();
+
     public ArrayList<Team> readTeamData() {
 
         Connection conn = null;
@@ -34,8 +35,8 @@ public class DBConnector implements IO{
             //Retrieve Team Data
             while (rs.next()) {
                 //Retrieve by column name
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
+                int id = rs.getInt("team_id");
+                String name = rs.getString("team_name");
                 int score = rs.getInt("score");
                 teamData.add(new Team(id, name, score));
             }
@@ -77,19 +78,19 @@ public class DBConnector implements IO{
             stmt = conn.createStatement();
 
 //STEP 3: Execute a query
-            String sql = "SELECT * FROM Match";
+            String sql = "SELECT * FROM TMatch";
             ResultSet rs = stmt.executeQuery(sql);
             ArrayList<Match> matchData = new ArrayList<>();
 
             //STEP 4: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                int id = rs.getInt("id");
-                String team1 = rs.getString("team1");
-                String team2 = rs.getString("team2");
+                int id = rs.getInt("match_id");
+                String team1 = rs.getString("teamid1");
+                String team2 = rs.getString("teamid2");
                 int score1 = rs.getInt("score1");
                 int score2 = rs.getInt("score2");
-                String date = rs.getString("date");
+                String date = rs.getString("match_date");
 
 
                 Team team1temp = null;
@@ -134,7 +135,7 @@ public class DBConnector implements IO{
         Connection conn = null;
 
         //save Teams to database
-        String sql  = "INSERT INTO Team(id, name, score) "
+        String sql  = "INSERT INTO Team(team_id, team_name, score) "
                 + "VALUES (?,?,?) ON DUPLICATE KEY UPDATE score=?";
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -144,9 +145,14 @@ public class DBConnector implements IO{
 
                 Team p = tournament.getTeams().get(i);
 
+                System.out.println("i = " + i + ", id = " + p.getTeamID() + ", team = " + p.getName() +
+                        ", score = " + p.getScore());
+                System.out.println();
+
                 pstmt.setInt(1,p.getTeamID());
                 pstmt.setString(2,p.getName());
                 pstmt.setInt(3,p.getScore());
+                pstmt.setInt(4,p.getScore());
                 pstmt.addBatch();
 
             }
@@ -161,7 +167,7 @@ public class DBConnector implements IO{
 
         }
         //Save match to database
-        sql = "INSERT INTO Match (id, team1, team1, score1, score2, date) " +
+        sql = "INSERT INTO TMatch (match_id, teamid1, teamid2, score1, score2, date) " +
                 "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE team1=?,team2=?,score1=?,score2=?, date=?";
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -177,6 +183,11 @@ public class DBConnector implements IO{
                 pstmt.setInt(4,match.getScore1());
                 pstmt.setInt(5,match.getScore2());
                 pstmt.setString(6,match.getDate());
+                pstmt.setString(7,match.getTeam1().getName());
+                pstmt.setString(8,match.getTeam2().getName());
+                pstmt.setInt(9,match.getScore1());
+                pstmt.setInt(10,match.getScore2());
+                pstmt.setString(11,match.getDate());
                 pstmt.addBatch();
 
             }

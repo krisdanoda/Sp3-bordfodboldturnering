@@ -10,9 +10,8 @@ public class Knockout extends Tournament {
     }
 
     public Knockout(ArrayList <Team> teams ){
-        this.matches = matches;
+        this.teams=teams;
         this.closeSignUp =false;
-
 
     }
 
