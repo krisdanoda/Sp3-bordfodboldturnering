@@ -9,6 +9,14 @@ public class Knockout extends Tournament {
         teams = new ArrayList<>();
     }
 
+    public Knockout(ArrayList <Team> teams ){
+        this.matches = matches;
+        this.closeSignUp =false;
+
+
+    }
+
+
     //Create ALL matches from a list of teams. The first rounds a placed first
     public Match[] createMatches() {
         // Create list of empty matches

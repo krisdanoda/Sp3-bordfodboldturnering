@@ -32,8 +32,10 @@ public class UI {
     void adminMainMenu(){
         String menuItem1 = "1. Se turnering";
         String menuItem2 = "2. Lav turnering";
-        String menuItem3 = "3. Tilbage";
-        String[] menuItems = {menuItem1, menuItem2, menuItem3};
+        String menuItem3 = "3. Load Data";
+        String menuItem4 = "4. Save Data";
+        String menuItem5 = "5. Tilbage";
+        String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItem4,menuItem5};
         boolean quit = false;
         while (!quit) {
             for (String menuItem: menuItems)
@@ -56,8 +58,18 @@ public class UI {
                     currentTournament.initTeams();
 
                     break;
-
                 case 3:
+                    //Load data
+                    currentTournament = new Knockout(Main.io.readTeamData());
+
+                    break;
+
+                case 4:
+                    //Save Data
+                    Main.io.saveGameData(currentTournament);
+
+                    break;
+                case 5:
                     quit = true;
                     break;
 

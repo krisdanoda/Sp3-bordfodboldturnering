@@ -42,7 +42,9 @@ public class Team {
         this.score += score;
     }
 
-
+    public int getTeamID() {
+        return teamID;
+    }
 
     @Override
     public String toString() {

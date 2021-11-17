@@ -96,6 +96,10 @@ public class Tournament {
         return name;
     }
 
+    public Match[] getMatches() {
+        return matches;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

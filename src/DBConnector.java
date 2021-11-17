@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBConnector {
+public class DBConnector implements IO{
 
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/Sp3"; //todo:create database
@@ -11,7 +11,7 @@ public class DBConnector {
     static final String PASS = "";
     private ArrayList<Team> teamData = new ArrayList<>();
     private ArrayList<Match> matchList = new ArrayList<>();
-    public void readTeamData() {
+    public ArrayList<Team> readTeamData() {
 
         Connection conn = null;
         Statement stmt = null;
@@ -64,10 +64,10 @@ public class DBConnector {
                 se.printStackTrace();
             }//end finally try
         }//end try
-        //return teamData;
+        return teamData;
     }
 
-    public ArrayList<Match> readMatchData() {
+    public Match[] readMatchData() {
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -126,38 +126,32 @@ public class DBConnector {
             }//end finally try
         }//end try
 
-        return matchList;
+        Match matches[] = matchList.toArray(new Match[0]);
+        return matches;
     }
 
-    public void saveGameData(ArrayList<Player> players) {
+    public void saveGameData(Tournament tournament) {
         Connection conn = null;
-        String sql  = "INSERT INTO Player(id, player_name, balance, position, isNext) "
-                + "VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE balance=?,position = ?, isNext=?";
+
+        //save Teams to database
+        String sql  = "INSERT INTO Team(id, name, score) "
+                + "VALUES (?,?,?) ON DUPLICATE KEY UPDATE score=?";
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            for(int i = 0; i <  players.size(); i++){
+            for(int i = 0; i <  tournament.getTeams().size(); i++){
 
-                Player p = players.get(i);
+                Team p = tournament.getTeams().get(i);
 
-                pstmt.setInt(1,p.getId());
+                pstmt.setInt(1,p.getTeamID());
                 pstmt.setString(2,p.getName());
-                pstmt.setInt(3,p.account.getBalance());
-                pstmt.setInt(4,p.position);
-                pstmt.setBoolean(5, Main.currentPlayer == p);
-
-
-                pstmt.setInt(6,p.account.getBalance());
-                pstmt.setInt(7,p.position);
-                pstmt.setBoolean(8, Main.currentPlayer == p);
-
+                pstmt.setInt(3,p.getScore());
                 pstmt.addBatch();
 
             }
 
             pstmt.executeBatch();
-
 
         }catch (SQLException e){
 
@@ -166,8 +160,34 @@ public class DBConnector {
 
 
         }
+        //Save match to database
+        sql = "INSERT INTO Match (id, team1, team1, score1, score2, date) " +
+                "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE team1=?,team2=?,score1=?,score2=?, date=?";
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
+            for(int i = 0; i <  tournament.getMatches().length; i++){
 
+                Match match = tournament.getMatches()[i];
+
+                pstmt.setInt(1,match.getMatchID());
+                pstmt.setString(2,match.getTeam1().getName());
+                pstmt.setString(3,match.getTeam2().getName());
+                pstmt.setInt(4,match.getScore1());
+                pstmt.setInt(5,match.getScore2());
+                pstmt.setString(6,match.getDate());
+                pstmt.addBatch();
+
+            }
+
+            pstmt.executeBatch();
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+
+        }
 
     }
 }

@@ -1,17 +1,17 @@
 import javax.xml.namespace.QName;
 
 public class Match {
-    private String name;
-    private Team team1;
-    private Team team2;
-    private int score1;
-    private int score2;
+    private Team team1, team2;
+    private int score1, score2;
     private String date;
-
+    private static int ID = 1;
+    private int matchID;
     //private int round;
     public Match(Team t1, Team t2) {
         team1 = t1;
         team2 = t2;
+        matchID = ID;
+        ID++;
     }
 
     public Match(int Id, Team t1, Team t2, int score1, int score2, String date) {
@@ -20,10 +20,12 @@ public class Match {
         this.score1 = score1;
         this.score2 = score2;
         this.date = date;
-
+        matchID = Id;
     }
 
     public Match() {
+        matchID = ID;
+        ID++;
     }
 
     @Override
@@ -76,6 +78,14 @@ public class Match {
 
     public int getScore2() {
         return score2;
+    }
+
+    public int getMatchID() {
+        return matchID;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public Team getWinner() {
