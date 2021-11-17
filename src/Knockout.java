@@ -9,6 +9,14 @@ public class Knockout extends Tournament {
         teams = new ArrayList<>();
     }
 
+    public Knockout(ArrayList <Team> teams ){
+        this.matches = matches;
+        this.closeSignUp =false;
+
+
+    }
+
+
     //Create ALL matches from a list of teams. The first rounds a placed first
     public Match[] createMatches() {
         // Create list of empty matches
@@ -95,22 +103,9 @@ public class Knockout extends Tournament {
         return teamArray;
     }
 
-    public void setWinners(int i) {
-        for (Match match : matchesList.get(i))
-            match.setScore1(10);
+    public ArrayList<Match[]> getMatchesList() {
+        return matchesList;
     }
-
-    public Team[] getWinners() {
-        Team winners[] = new Team[matches.length];
-        for ( int i = 0; i < winners.length; i++)
-            winners[i] = matches[i].getWinner();
-        return winners;
-    }
-
-
-
-
-
 }
 
 

@@ -35,8 +35,10 @@ public class UI {
     void adminMainMenu(){
         String menuItem1 = "1. Se turnering";
         String menuItem2 = "2. Lav turnering";
-        String menuItem3 = "3. Tilbage";
-        String[] menuItems = {menuItem1, menuItem2, menuItem3};
+        String menuItem3 = "3. Load Data";
+        String menuItem4 = "4. Save Data";
+        String menuItem5 = "5. Tilbage";
+        String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItem4,menuItem5};
         boolean quit = false;
         while (!quit) {
             for (String menuItem: menuItems)
@@ -56,10 +58,21 @@ public class UI {
                 case 2:
                     System.out.println("Skriv navn til turnering");
                     currentTournament = new Knockout(getUserInput());
-                    //currentTournament.initTeams();
+                    currentTournament.initTeams();
+
+                    break;
+                case 3:
+                    //Load data
+                    currentTournament = new Knockout(Main.io.readTeamData());
+
                     break;
 
-                case 3:
+                case 4:
+                    //Save Data
+                    Main.io.saveGameData(currentTournament);
+
+                    break;
+                case 5:
                     quit = true;
                     break;
                 default:
@@ -99,7 +112,7 @@ public class UI {
                     break;
                 case 4: // Se Kamp Oversigt
                     currentTournament.printBracket();
-
+                    Frame f = new Frame(currentTournament);
                     break;
                 case 5: // Rediger matches
                     if(currentTournament.matches!=null) {
@@ -170,9 +183,9 @@ public class UI {
 
 
      private void editMatch(Match match) {
-        if ( match.getTeam1() == null || match.getTeam2() == null)
+        if ( match.getTeam1() == null || match.getTeam2() == null) {
             System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
-           else {
+        }else {
             Team team1 = match.getTeam1();
             Team team2 = match.getTeam2();
 

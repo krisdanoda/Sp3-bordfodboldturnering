@@ -15,7 +15,7 @@ class UI
 
 Main "1" *-- Tournament
 Tournament <|-- KnockOut
-
+Tournament *-- Team
 'Tournament <-- Foosball
 'Foosball <|-- KnockOut
 'Foosball <|-- GroupTournament
@@ -50,11 +50,6 @@ UI : void adminMainMenu()
 UI : void adminTournamentMainMenu()
 UI : void editTournament()
 UI : void editMatch(Match match)
-UI : String getUserInput(String msg)
-UI : String getUserInput()
-UI : int getUserInputInt()
-UI : int intGetUserIntWithin(int menuItemsSize)
-UI : int getUserInputInt(String msg)
 UI : void playerMenu(Tournament tournament)
 UI : Team teamName(Tournament tournament)
 UI : void playerNames(Team team)
@@ -86,7 +81,6 @@ Tournament : void printTeams()
 Tournament : boolean getIsCloseSignUp()
 Tournament : Match getMatch(int index)
 Tournament : void setCloseSignUp(boolean closeSignUp)
-Tournament : void setScore( )
 Tournament : String getName()
 Tournament : void setName(String name)
 Tournament : String getDeadline()
