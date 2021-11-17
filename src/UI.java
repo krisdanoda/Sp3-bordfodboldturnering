@@ -15,15 +15,18 @@ public class UI {
         while(count2==0) {
             input = getUserInputInt("1. Admin\n2. Spiller\n3. Afslut");
             if (input == 1) {
-                //Admin Menu
+
                 adminMainMenu();
             } else if (input == 2) {
-                //Spiller menu
+
                 count2++ ;
                 playerMenu(currentTournament);
             }
             else if (input == 3){
                 count2=9;
+            }
+            else{
+                System.out.println("Indtast gyldigt menu nummer");
             }
         }
     }
@@ -59,7 +62,9 @@ public class UI {
                 case 3:
                     quit = true;
                     break;
-
+                default:
+                    System.out.println("Indtast gyldigt menu nummer");
+                    break;
             }
         }
     }
@@ -117,7 +122,8 @@ public class UI {
                     //Return til main menu
                     quit = true;
                     break;
-
+                default:
+                    System.out.println("Indtast gyldigt menu nummer");
             }
         }
     }
@@ -154,6 +160,10 @@ public class UI {
                     break;
                 case 4:
                     quit2=true;
+                    break;
+                default:
+                    System.out.println("Indtast gyldigt menu nummer");
+                    break;
             }
         }
     }
@@ -273,8 +283,16 @@ public class UI {
                         else if (input3==3){
                             count2=0;
                         }
+                        else{
+                            System.out.println("Indtast gyldigt menu nummer");
+                            count2=0 ;
+                        }
                     }
                     else if (input3==3){
+                        count2=0 ;
+                    }
+                    else{
+                        System.out.println("Indtast gyldigt menu nummer");
                         count2=0 ;
                     }
                     count2++ ;
@@ -295,17 +313,25 @@ public class UI {
 
                     inputA = getUserInputInt();
                     count2++ ;
-                    if(inputA!=count){
+                    if(inputA==count){
+                        count2=1;
+                    }
+                    else if(inputA<=count){
                         extraPlayer(tournament.getTeams().get(inputA-1));
                         count2=0;
                     }
                     else{
-                        count2=1 ;
+                        System.out.println("Indtast gyldigt menu nummer");
+                        count2=2 ;
                     }
                 }
             }
             else if(input==3){
                 count2=0 ;
+            }
+            else{
+                System.out.println("Indtast gyldigt menu nummer");
+                count2=1 ;
             }
         }
     }
