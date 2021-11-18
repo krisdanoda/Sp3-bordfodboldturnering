@@ -115,9 +115,18 @@ public class UI {
                     editTournament();
                     break;
                 case 4: // Se Kamp Oversigt
-                    currentTournament.printBracket();
-                    Frame f = new Frame(currentTournament);
-                    break;
+                    int input4=getUserInputInt("1. Kampoversigt\n2. Stilling\n3. Tilbage");
+                    if(input4==1) {
+                        currentTournament.printBracket();
+                        Frame f = new Frame(currentTournament);
+                        break;
+                    }
+                    else if(input4==2){
+                        showPlacements();
+                    }
+                    else{
+                        break;
+                    }
                 case 5: // Rediger matches
                     if(currentTournament.matches!=null) {
                         currentTournament.printMatches();
@@ -405,6 +414,8 @@ public class UI {
         team.getPlayers().add(new Player(inputS));
     }
     public void showPlacements(){
+    for(int i=currentTournament.getMatchesList().size();i>=0;i--){
 
+    }
     }
 }
