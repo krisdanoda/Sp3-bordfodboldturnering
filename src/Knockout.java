@@ -85,8 +85,8 @@ public class Knockout extends Tournament {
             for (int j = 0; currentMatches.length > j; j++)
 
                 if (j % 2 == 0)
-                    matchesList.get(i - 1)[(j / 2)].setTeam2(currentMatches[j].getWinner());
-                else matchesList.get(i - 1)[(j - 1) / 2].setTeam1(currentMatches[j].getWinner());
+                    matchesList.get(i - 1)[(j / 2)].setTeam2(currentMatches[j].getWinner(this));
+                else matchesList.get(i - 1)[(j - 1) / 2].setTeam1(currentMatches[j].getWinner(this));
 
         }
     }

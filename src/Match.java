@@ -91,14 +91,24 @@ public class Match {
         this.date = date;
     }
 
-    public Team getWinner() {
+    public Team getWinner(Knockout knockout) {
         Team winner = null;
         if (score1 > score2)
             winner = team1;
+        if(knockout.getMatchesList().get(0).length<knockout.getMatchesList().get(1).length && team1.getPoints()==0 && team2.getPoints()==0){
+
+        }
+        else {
             team1.addPoints();
+        }
         if (score2 > score1)
             winner = team2;
+        if(knockout.getMatchesList().get(0).length<knockout.getMatchesList().get(1).length && team1.getPoints()==0 && team2.getPoints()==0){
+
+        }
+        else {
             team2.addPoints();
+        }
         return winner;
     }
 }

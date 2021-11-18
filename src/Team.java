@@ -18,12 +18,12 @@ public class Team {
 
     }
 
-    public Team(int ID, String name, int Score){
+    public Team(int ID, String name, int Score, int Points){
         this.teamID = ID;
         this.name = name;
         this.score = Score;
         players = new ArrayList<>();
-
+        int points = this.points;
     }
 
     public String getName(){
@@ -50,7 +50,7 @@ public class Team {
     }
 
     public void addPoints(){
-        points+=2;
+        this.points+=2;
     }
     public int getPoints(){
         return points;
@@ -61,6 +61,7 @@ public class Team {
         String str = "";
         str += this.name;
         str += " målscore: " + getScore();
+        str += this.points;
         return str;
     }
 }
