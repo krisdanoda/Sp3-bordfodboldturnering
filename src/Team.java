@@ -22,6 +22,7 @@ public class Team {
         this.name = name;
         this.score = Score;
         players = new ArrayList<Player>();
+
     }
 
     public String getName(){
@@ -52,6 +53,7 @@ public class Team {
         String str = "";
         str += this.name;
         return str;
+
     }
 
 

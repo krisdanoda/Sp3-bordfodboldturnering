@@ -1,22 +1,8 @@
 
-import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 public class Frame extends JFrame {
 
     Panel panel;
-
-    public Panel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(Panel panel) {
-        this.panel = panel;
-    }
-
-    private int h, w;
 
     public Frame(Knockout knockout) {
 
