@@ -1,11 +1,11 @@
 create database sp3;
 
+use sp3;
+
 create table Team(
 team_id tinyint primary key,
 team_name varchar(255),
 score smallint);
-
-use sp3;
 
 create table TMatch(
 match_id tinyint primary key,
