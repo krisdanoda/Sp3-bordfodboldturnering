@@ -47,7 +47,7 @@ public class Knockout extends Tournament {
         for (int i = 0; i < matchesList.size(); i++) {
             System.out.println("           Runde " + (matchesList.size() - i));
             for (Match match : matchesList.get(i))
-                System.out.println(match);
+                System.out.println(" kamp dato: " + match.getDate() + " :     " + match);
         }
     }
 

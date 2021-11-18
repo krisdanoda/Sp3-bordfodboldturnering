@@ -125,8 +125,10 @@ public class UI {
 
                         int input = getUserInputInt();
                         if (input == currentTournament.matches.length + 1) {
+
                             System.out.println("Vindere i " + currentTournament.getName() + " er sat.");
                             currentTournament.setNextRound();
+
                         } else if (input > 0 && input <= currentTournament.matches.length)
 
                             editMatch(currentTournament.matches[input - 1]);
@@ -205,7 +207,8 @@ public class UI {
 
             String menuItem1 = "1. "+ msg +": " + team1.getName();
             String menuItem2 = "2. "+ msg +": " + team2.getName();
-            String[] menuItems = {menuItem1, menuItem2};
+            String menuItem3 = "3. Ændre dato på kampen";
+            String[] menuItems = {menuItem1, menuItem2, menuItem3};
 
 
             for (String menuItem : menuItems)
@@ -218,8 +221,14 @@ public class UI {
                 case 2:
                     match.setScore2(getUserInputInt(msg + team2));
                     break;
+                case 3:
+                    match.setDate(getUserInput("Skriv dato til kampen:"));
+                    break;
+
             }
+        currentTournament.setScore();
         }
+
 
     }
 

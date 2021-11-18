@@ -52,6 +52,7 @@ public class Team {
     public String toString() {
         String str = "";
         str += this.name;
+        str += " målscore: " + getScore();
         return str;
     }
 }
