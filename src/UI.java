@@ -198,37 +198,44 @@ public class UI {
 
 
      private void editMatch(Match match) {
-        if ( match.getTeam1() == null || match.getTeam2() == null) {
-            System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
-        }else {
-            Team team1 = match.getTeam1();
-            Team team2 = match.getTeam2();
-            String msg = "Sæt point for hold";
-
-            String menuItem1 = "1. "+ msg +": " + team1.getName();
-            String menuItem2 = "2. "+ msg +": " + team2.getName();
-            String menuItem3 = "3. Ændre dato på kampen";
-            String[] menuItems = {menuItem1, menuItem2, menuItem3};
+        boolean quit = false;
 
 
-            for (String menuItem : menuItems)
-                System.out.println(menuItem);
+        while (!quit) {
+            if (match.getTeam1() == null || match.getTeam2() == null) {
+                System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
+            } else {
+                Team team1 = match.getTeam1();
+                Team team2 = match.getTeam2();
+                String msg = "Sæt point for hold";
 
-            switch (getUserInputInt()) {
-                case 1:
-                    match.setScore1(getUserInputInt(msg + team1));
-                    break;
-                case 2:
-                    match.setScore2(getUserInputInt(msg + team2));
-                    break;
-                case 3:
-                    match.setDate(getUserInput("Skriv dato til kampen:"));
-                    break;
+                String menuItem1 = "1. " + msg + ": " + team1.getName();
+                String menuItem2 = "2. " + msg + ": " + team2.getName();
+                String menuItem3 = "3. Ændre dato på kampen";
+                String menuItem4 = "4. tilbage";
+                String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItem4};
 
+
+                for (String menuItem : menuItems)
+                    System.out.println(menuItem);
+
+                switch (getUserInputInt()) {
+                    case 1:
+                        match.setScore1(getUserInputInt(msg + team1));
+                        break;
+                    case 2:
+                        match.setScore2(getUserInputInt(msg + team2));
+                        break;
+                    case 3:
+                        match.setDate(getUserInput("Skriv dato til kampen:"));
+                        break;
+                    case 4:
+                        quit = true;
+                        break;
+                }
+                currentTournament.setScore();
             }
-        currentTournament.setScore();
         }
-
 
     }
 
