@@ -143,12 +143,15 @@ public class DBConnector implements IO{
 
             for(int i = 0; i <  tournament.getTeams().size(); i++){
 
+                System.out.println("længde= " + tournament.getTeams().size());
+
                 Team p = tournament.getTeams().get(i);
 
+                /*
                 System.out.println("i = " + i + ", id = " + p.getTeamID() + ", team = " + p.getName() +
                         ", score = " + p.getScore());
                 System.out.println();
-
+*/
                 pstmt.setInt(1,p.getTeamID());
                 pstmt.setString(2,p.getName());
                 pstmt.setInt(3,p.getScore());
@@ -167,8 +170,8 @@ public class DBConnector implements IO{
 
         }
         //Save match to database
-        sql = "INSERT INTO TMatch (match_id, teamid1, teamid2, score1, score2, date) " +
-                "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE team1=?,team2=?,score1=?,score2=?, date=?";
+        sql = "INSERT INTO TMatch (match_id, teamid1, teamid2, score1, score2, match_date) " +
+                "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE teamid1=?,teamid2=?,score1=?,score2=?, match_date=?";
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -178,13 +181,13 @@ public class DBConnector implements IO{
                 Match match = tournament.getMatches()[i];
 
                 pstmt.setInt(1,match.getMatchID());
-                pstmt.setString(2,match.getTeam1().getName());
-                pstmt.setString(3,match.getTeam2().getName());
+                pstmt.setInt(2,match.getTeam1().getTeamID());
+                pstmt.setInt(3,match.getTeam2().getTeamID());
                 pstmt.setInt(4,match.getScore1());
                 pstmt.setInt(5,match.getScore2());
                 pstmt.setString(6,match.getDate());
-                pstmt.setString(7,match.getTeam1().getName());
-                pstmt.setString(8,match.getTeam2().getName());
+                pstmt.setInt(7,match.getTeam1().getTeamID());
+                pstmt.setInt(8,match.getTeam2().getTeamID());
                 pstmt.setInt(9,match.getScore1());
                 pstmt.setInt(10,match.getScore2());
                 pstmt.setString(11,match.getDate());
@@ -197,6 +200,8 @@ public class DBConnector implements IO{
         }catch (SQLException e){
 
             e.printStackTrace();
+
+        }catch (NullPointerException e) {
 
         }
 

@@ -49,6 +49,8 @@ public class Match {
     }
 
     public Team getTeam1() {
+        if(team1==null)
+            return new Team(0,"Ukendt",0);
         return team1;
     }
 
@@ -62,7 +64,7 @@ public class Match {
 
     public Team getTeam2() {
         if(team2==null)
-            return null;
+            return new Team(0,"Ukendt",0);
         return team2;
     }
 
