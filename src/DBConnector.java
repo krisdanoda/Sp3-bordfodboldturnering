@@ -71,6 +71,8 @@ public class DBConnector implements IO{
     public Match[] readMatchData() {
         Connection conn = null;
         Statement stmt = null;
+        ArrayList<Match> matchData = new ArrayList<>();
+        Match[] matches;
         try {
             //STEP 1: Open a connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -80,14 +82,14 @@ public class DBConnector implements IO{
 //STEP 3: Execute a query
             String sql = "SELECT * FROM TMatch";
             ResultSet rs = stmt.executeQuery(sql);
-            ArrayList<Match> matchData = new ArrayList<>();
+
 
             //STEP 4: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
                 int id = rs.getInt("match_id");
-                String team1 = rs.getString("teamid1");
-                String team2 = rs.getString("teamid2");
+                int team1 = rs.getInt("teamid1");
+                int team2 = rs.getInt("teamid2");
                 int score1 = rs.getInt("score1");
                 int score2 = rs.getInt("score2");
                 String date = rs.getString("match_date");
@@ -96,10 +98,10 @@ public class DBConnector implements IO{
                 Team team1temp = null;
                 Team team2temp = null;
                 for (Team team: teamData){
-                    if(team.equals(team1)){
+                    if(team.getTeamID()==team1){
                         team1temp=team;
                     }
-                    if (team.equals(team2)){
+                    if (team.getTeamID()==team2){
                         team2temp=team;
                     }
                 }
@@ -127,7 +129,7 @@ public class DBConnector implements IO{
             }//end finally try
         }//end try
 
-        Match matches[] = matchList.toArray(new Match[0]);
+        matches = matchData.toArray(new Match[0]);
         return matches;
     }
 

@@ -20,7 +20,7 @@ public class Knockout extends Tournament {
         this.matches = matches;
         closeSignUp = true;
         createBracket();
-
+        //System.out.printf("brackets er lavet");
     }
 
 
