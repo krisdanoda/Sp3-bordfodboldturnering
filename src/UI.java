@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class UI {
@@ -21,7 +22,7 @@ public class UI {
                 playerMenu(currentTournament);
             }
             else if (input == 3){
-                count2=9;
+                count2=25;
             }
             else{
                 System.out.println("Indtast gyldigt menu nummer");
@@ -56,6 +57,7 @@ public class UI {
                 case 2:
                     System.out.println("Skriv navn til turnering");
                     currentTournament = new Knockout(getUserInput());
+
                     break;
                 case 3:
                     //Load data
@@ -149,10 +151,10 @@ public class UI {
             String menuItem1 = "1. ændre på turnering navn: " + currentTournament.getName();
             String menuItem2 = "2. ændre på tilmelding frist: " + currentTournament.getDeadline();
             String menuItem3 = "3. Luk tilmelding";
-            String menuItem4 = "4. Shuffle hold"; //todo: make shuffle team method in Tournament Not n
-            String menuItemQuit = "4. Tilbage";
+            String menuItem4 = "4. Shuffle hold";
+            String menuItemQuit = "5. Tilbage";
 
-            String[] menuItems = {menuItem1, menuItem2, menuItem3, menuItemQuit};
+            String[] menuItems = {menuItem1, menuItem2, menuItem3,menuItem4, menuItemQuit};
             for (String menuItem : menuItems)
                 System.out.println(menuItem);
             switch (getUserInputInt()) {
@@ -174,6 +176,15 @@ public class UI {
                     }
                     break;
                 case 4:
+                    if(currentTournament.getTeams().size()!=0) {
+                        Collections.shuffle(currentTournament.getTeams());
+                        System.out.println("Holdene er blevet shufflet");
+                    }
+                    else{
+                        System.out.println("Der er ikke nogen hold tilmeldt");
+                    }
+                    break;
+                case 5:
                     quit2=true;
                     break;
                 default:
@@ -190,21 +201,22 @@ public class UI {
         }else {
             Team team1 = match.getTeam1();
             Team team2 = match.getTeam2();
+            String msg = "Sæt point for hold";
 
-            String menuItem1 = "1. Sæt point for hold: " + team1.getName();
-            String menuItem2 = "2. Sæt point for hold: " + team2.getName();
+            String menuItem1 = "1. "+ msg +": " + team1.getName();
+            String menuItem2 = "2. "+ msg +": " + team2.getName();
             String[] menuItems = {menuItem1, menuItem2};
 
 
             for (String menuItem : menuItems)
                 System.out.println(menuItem);
-            String msg = "Sæt point for hold";
+
             switch (getUserInputInt()) {
                 case 1:
-                    match.setScore1(getUserInputInt("Sæt point for hold " + team1));
+                    match.setScore1(getUserInputInt(msg + team1));
                     break;
                 case 2:
-                    match.setScore2(getUserInputInt("Sæt point for hold " + team2));
+                    match.setScore2(getUserInputInt(msg + team2));
                     break;
             }
         }
@@ -240,12 +252,6 @@ public class UI {
             }
         return input;
     }
-
-    int intGetUserIntWithin(int menuItemsSize) {
-        int input;
-        return getUserInputInt();
-    }
-
 
     //gets user input and returns it as a string
     int getUserInputInt(String msg) {

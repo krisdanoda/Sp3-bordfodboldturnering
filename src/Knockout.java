@@ -12,7 +12,6 @@ public class Knockout extends Tournament {
     public Knockout(ArrayList <Team> teams ){
         this.teams=teams;
         this.closeSignUp =false;
-
     }
 
     public Knockout(ArrayList <Team> teams, Match[] matches ){
@@ -20,10 +19,8 @@ public class Knockout extends Tournament {
         this.matches = matches;
         closeSignUp = true;
         createBracket();
-        //System.out.printf("brackets er lavet");
+
     }
-
-
 
     //Create ALL matches from a list of teams. The first rounds a placed first
     public Match[] createMatches() {
@@ -50,7 +47,7 @@ public class Knockout extends Tournament {
         for (int i = 0; i < matchesList.size(); i++) {
             System.out.println("           Runde " + (matchesList.size() - i));
             for (Match match : matchesList.get(i))
-                System.out.println(match);;
+                System.out.println(match);
         }
     }
 
@@ -92,23 +89,6 @@ public class Knockout extends Tournament {
                 else matchesList.get(i - 1)[(j - 1) / 2].setTeam1(currentMatches[j].getWinner());
 
         }
-    }
-
-    public void printMatches(Match[] matches) {
-        System.out.println("Kampe:");
-        for (Match m : matches) {
-            System.out.println(m.toString());
-        }
-    }
-
-
-
-    public Team[] getTeamArray() {
-        Team[] teamArray = new Team[this.teams.size()];
-        for (int i = 0; i < this.teams.size(); i++) {
-            teamArray[i] = teams.get(i);
-        }
-        return teamArray;
     }
 
     public ArrayList<Match[]> getMatchesList() {

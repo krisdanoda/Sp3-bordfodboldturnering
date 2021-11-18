@@ -11,7 +11,7 @@ public class Team {
 
     public Team(String name) {
         this.name = name;
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
         score = 0;
         this.teamID = ID++;
 
@@ -21,7 +21,7 @@ public class Team {
         this.teamID = ID;
         this.name = name;
         this.score = Score;
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
 
     }
 
@@ -53,8 +53,5 @@ public class Team {
         String str = "";
         str += this.name;
         return str;
-
     }
-
-
 }

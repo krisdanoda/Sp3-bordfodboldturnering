@@ -3,16 +3,11 @@ import javax.xml.namespace.QName;
 public class Match {
     private Team team1, team2;
     private int score1 = 0, score2 = 0;
-    private String date = "xx-xx-xx";;
+    private String date = "xx-xx-xx";
     private static int ID = 1;
     private int matchID;
     //private int round;
-    public Match(Team t1, Team t2) {
-        team1 = t1;
-        team2 = t2;
-        matchID = ID;
-        ID++;
-    }
+
 
     public Match(int Id, Team t1, Team t2, int score1, int score2, String date) {
         team1 = t1;

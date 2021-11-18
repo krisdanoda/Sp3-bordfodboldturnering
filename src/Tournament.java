@@ -9,29 +9,6 @@ public class Tournament {
     protected boolean closeSignUp;
 
 
-    public void initTeams() {
-        teams.add(new Team("Hippo"));
-        teams.add(new Team("Turtle"));
-        teams.add(new Team("Anglerfish"));
-        teams.add(new Team("Duck"));
-        teams.add(new Team("AntEater"));
-        teams.add(new Team("Leopon"));
-        teams.add(new Team("Mallard"));
-        teams.add(new Team("Shark"));
-        teams.add(new Team("Rabbit"));
-        teams.add(new Team("Dragon"));
-        teams.add(new Team("Dog"));
-        teams.add(new Team("Gorilla"));
-        teams.add(new Team("Panther"));
-        teams.add(new Team("Lemur"));
-        teams.add(new Team("Squirrel"));
-        teams.add(new Team("mouse"));
-        teams.add(new Team("Meerkat"));
-        teams.add(new Team("Owl"));
-        teams.add(new Team("Phoenix"));
-
-    }
-
     public void setScore() {
         for (Team team : teams)
             team.setScore(0);
@@ -42,8 +19,6 @@ public class Tournament {
                 match.getTeam2().addScore(match.getScore2() - match.getScore1());
             }
         }
-
-
     }
 
     public Tournament(String name) {
