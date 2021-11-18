@@ -66,6 +66,12 @@ public class Panel extends JPanel {
             H += h0;
 
         }
+        Team tempM =brackets.get(0)[0].getWinner();
+        affineTransform.rotate(-Math.PI/2,0,0);
+        rotatedFont = font.deriveFont(affineTransform);
+        g2d.setFont(rotatedFont);
+        if (tempM != null)
+            g2d.drawString(" Vinder: " + tempM.getName(), w/2, h0/2);
 
 
         //r = (new Rectangle2D.Double(5 * w / (8), 5 * h / (8), h / 8, h / 8));

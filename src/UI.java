@@ -207,7 +207,7 @@ public class UI {
             } else {
                 Team team1 = match.getTeam1();
                 Team team2 = match.getTeam2();
-                String msg = "Sæt point for hold";
+                String msg = "Sæt point for hold ";
 
                 String menuItem1 = "1. " + msg + ": " + team1.getName();
                 String menuItem2 = "2. " + msg + ": " + team2.getName();
@@ -221,13 +221,13 @@ public class UI {
 
                 switch (getUserInputInt()) {
                     case 1:
-                        match.setScore1(getUserInputInt(msg + team1));
+                        match.setScore1(getUserInputInt(msg + team1.getName() + " "));
                         break;
                     case 2:
-                        match.setScore2(getUserInputInt(msg + team2));
+                        match.setScore2(getUserInputInt(msg + team2.getName() + " "));
                         break;
                     case 3:
-                        match.setDate(getUserInput("Skriv dato til kampen:"));
+                        match.setDate(getUserInput("Skriv dato til kampen: "));
                         break;
                     case 4:
                         quit = true;

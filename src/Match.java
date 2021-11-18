@@ -28,13 +28,13 @@ public class Match {
         String str = "";
         if (team1 != null)
 
-            str += this.team1.toString();
+            str += this.team1.getName();
         else
             str += "Ukendt hold ";
         str += ": "+score1;
         str += " < vs > ";
         if (team2 != null)
-            str += this.team2.toString();
+            str += this.team2.getName();
         else
             str += "Ukendt hold ";
         str += ": "+this.score2;
@@ -95,10 +95,10 @@ public class Match {
         Team winner = null;
         if (score1 > score2)
             winner = team1;
-            team1.addPoints();
+          //  team1.addPoints();
         if (score2 > score1)
             winner = team2;
-            team2.addPoints();
+        // team2.addPoints();
         return winner;
     }
 }
