@@ -143,7 +143,6 @@ public class DBConnector implements IO{
 
             for(int i = 0; i <  tournament.getTeams().size(); i++){
 
-                System.out.println("længde= " + tournament.getTeams().size());
 
                 Team p = tournament.getTeams().get(i);
 
