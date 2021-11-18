@@ -21,6 +21,7 @@ public class Team {
         this.teamID = ID;
         this.name = name;
         this.score = Score;
+        players = new ArrayList<Player>();
     }
 
     public String getName(){

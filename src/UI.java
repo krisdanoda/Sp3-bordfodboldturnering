@@ -351,8 +351,10 @@ public class UI {
     public Team teamName(Tournament tournament){
         String inputS2;
 
+        int id = tournament.getTeams().size()+1;
+
         inputS2 = getUserInput("Angiv holdnavn:");
-        Team team = new Team(inputS2);
+        Team team = new Team(id, inputS2, 0);
         tournament.addTeam(team);
         return team ;
     }
