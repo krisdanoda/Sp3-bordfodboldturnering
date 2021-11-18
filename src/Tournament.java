@@ -82,15 +82,6 @@ public class Tournament {
         return closeSignUp;
     }
 
-    public Match getMatch(int index){
-        if (index > matches.length-1 || index <0) {
-            System.out.println("E Index out of bounds: " + index );
-            return null;
-        }
-        return this.matches[index];
-    }
-
-
 
     public String getName() {
         return name;
@@ -118,10 +109,6 @@ public class Tournament {
 
     public void addTeam(Team newTeam) {
         teams.add(newTeam);
-    }
-
-    public void setTeams(ArrayList<Team> teams) {
-        this.teams = teams;
     }
 
     @Override

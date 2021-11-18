@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.Collections;
 
 public class Panel extends JPanel {
     final int h, w;
-    Color color, color1, color2;
     ArrayList<Match[]> brackets = new ArrayList<>();
 
     public Panel(Knockout knockout) {
@@ -15,8 +15,6 @@ public class Panel extends JPanel {
             this.h = 800;
             this.w = 1200;
             this.setPreferredSize(new Dimension(w, h));
-            this.color1 = Color.black;
-            this.color2 = Color.white;
             this.brackets = knockout.getMatchesList();
 
     }
@@ -26,8 +24,12 @@ public class Panel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) G;
         Rectangle2D.Double r;
-        Font font = new Font("Serif", Font.PLAIN, 24);
-        g2d.setFont(font);
+        Font font = new Font("Courier", Font.BOLD, 24);
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(Math.PI/2,0,0);
+        Font rotatedFont = font.deriveFont(affineTransform);
+
+        g2d.setFont(rotatedFont);
 
         g2d.setStroke(new BasicStroke(10));
         int k = (int) Math.pow(2, brackets.size() - 1);
@@ -37,6 +39,8 @@ public class Panel extends JPanel {
         int S = s;
         int H = h / (brackets.size() + 2);
         int h0 = H;
+
+
 
         for (int i = brackets.size()-1; i >= 0; i--) {
             Match[] M = brackets.get(i);

@@ -11,6 +11,7 @@ public class DBConnector implements IO{
     static final String PASS = "";
     private ArrayList<Team> teamData = new ArrayList<>();
     private ArrayList<Match> matchList = new ArrayList<>();
+
     public ArrayList<Team> readTeamData() {
 
         Connection conn = null;
@@ -162,7 +163,7 @@ public class DBConnector implements IO{
         }
         //Save match to database
         sql = "INSERT INTO Match (id, team1, team1, score1, score2, date) " +
-                "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE team1=?,team2=?,score1=?,score2=?, date=?";
+                "VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE team1=?,team2=?,score1=?,score2=?, date=?"; //asdkkas
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

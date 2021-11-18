@@ -10,12 +10,20 @@ class Player
 class Match
 class Team
 class UI
+interface IO
+class Panel
+class Frame
+class DBConnector
 
 
-
-Main "1" *-- Tournament
+Main "1" *-- KnockOut
 Tournament <|-- KnockOut
 Tournament *-- Team
+
+Main *-- IO
+IO<|.. DBConnector
+UI *--Frame
+Frame*--Panel
 'Tournament <-- Foosball
 'Foosball <|-- KnockOut
 'Foosball <|-- GroupTournament
@@ -31,17 +39,19 @@ Tournament : addTeam(Team)
 
 KnockOut : ArrayList<match> round( Team teams[] )
 KnockOut : int round
-KnockOut : int calcRounds(ArrayList<match> )
 
 KnockOut "1" *-- "*" Match
+Tournament *-- Match
 'GroupTournament *-- Match
 
-FileController *-- Tournament
+'FileController *-- Tournament
 Main *-- UI
 
 
-Match "1" *-- "2" Team
-Team "1" *-- "*" Player
+Match  *--  Team
+Team   *--  Player
+Panel *-- Match
+
 
 UI : Knockout currentTournament
 UI : int count2
@@ -68,7 +78,8 @@ FileController : void saveTeam(Team team)
 FileController : void readTeam()
 
 Main : Tournament tournament
-Main : Knockout knockout
+Main : Knockout
+Main : static IO
 Main : static void main(String[] args)
 
 Tournament : Match[] matches
@@ -79,7 +90,6 @@ Tournament : boolean closeSignUp
 Tournament : void printMatches()
 Tournament : void printTeams()
 Tournament : boolean getIsCloseSignUp()
-Tournament : Match getMatch(int index)
 Tournament : void setCloseSignUp(boolean closeSignUp)
 Tournament : String getName()
 Tournament : void setName(String name)
@@ -87,7 +97,6 @@ Tournament : String getDeadline()
 Tournament : void setDeadline(String deadline)
 Tournament : ArrayList<Team> getTeams()
 Tournament : void addTeam(Team newTeam)
-Tournament : void setTeams(ArrayList<Team> teams)
 Tournament : String toString()
 
 KnockOut : ArrayList<Match[]> matchesList
@@ -103,6 +112,8 @@ Match : Team teams1
 Match : Team team2
 Match : int score1
 Match : int score2
+Match : int static id
+Match : int matchID
 
 Match : Team getWinner( )
 Match : Team getTeam1()
@@ -125,13 +136,36 @@ Team : setScore(int score)
 Team : void addScore(int score)
 Team : void addPlayer(Player player)
 Team : String toString()
+Team : int static ID
+Team : int teamID
 
 Player : String name
+
+Frame : Panel panel
+Frame : Frame(KnockOut knockout)
+
+Panel : Panel(KnockOut knockout)
+Panel : final int h , w
+Panel : ArrayList <Match[]> brackets
 
 UI : adminTournamentMainMenu()
 UI : getUserInput()
 UI : getUserInput(String)
 UI : getUserInputInt()
 UI : getUserInputInt(String)
+
+IO : ArrayList<Team> readTeamData()
+IO : Match[] readMatchData()
+IO : void saveGameData(Tournament tournament)
+
+DBConnector : static final String DB_URL
+DBConnector : static final String USER
+DBConnector : static final String PASS
+DBConnector : ArrayList<Team> teamData
+DBConnector : ArrayList<Match> matchList
+
+DBConnector : ArrayList<Team> readTeamData()
+DBConnector : Match[] readMatchData()
+DBConnector : void saveGameData(Tournament tournament)
 
 @enduml
