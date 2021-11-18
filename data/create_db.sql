@@ -16,7 +16,6 @@ score2 smallint,
 match_date varchar(255));
 
 show tables;
-select * from Team;
 
 insert into Team value(1, "Astralis", 10);
 insert into Team value(2, "Batemax", 5);
@@ -26,16 +25,14 @@ insert into Team value(5, "Estragon", 30);
 insert into Team value(6, "x", 25);
 insert into Team value(7, "y", 30);
 
-show databases;
-
 insert into TMatch value(1, 1, 2, 3, 2, "02-01-22");
 insert into TMatch value(2, 3, 4, 0, 1, "15-01-22");
 insert into TMatch value(3, 5, 6, 2, 3, "16-01-22");
 insert into TMatch value(4, 7, 8, 5, 1, "18-01-22");
 insert into TMatch value(5, 9, 10, 4, 0, "20-01-22");
 
-select * from TMatch;
 select * from Team;
+select * from TMatch;
 
 -- sletter udvalgte rækker fra 'Team'-tabellen
 DELETE FROM Team WHERE team_id > 5;
