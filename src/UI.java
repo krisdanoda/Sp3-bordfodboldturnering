@@ -56,8 +56,6 @@ public class UI {
                 case 2:
                     System.out.println("Skriv navn til turnering");
                     currentTournament = new Knockout(getUserInput());
-                    currentTournament.initTeams();
-
                     break;
                 case 3:
                     //Load data
