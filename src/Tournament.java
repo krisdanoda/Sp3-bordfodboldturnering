@@ -22,7 +22,7 @@ public class Tournament {
         teams.add(new Team("Dragon"));
         teams.add(new Team("Dog"));
         teams.add(new Team("Gorilla"));
-        teams.add(new Team("Panther" ));
+        teams.add(new Team("Panther"));
         teams.add(new Team("Lemur"));
         teams.add(new Team("Squirrel"));
         teams.add(new Team("mouse"));
@@ -30,14 +30,13 @@ public class Tournament {
         teams.add(new Team("Owl"));
         teams.add(new Team("Phoenix"));
 
-
     }
 
-    public void setScore( ){
-        for (Team team: teams)
+    public void setScore() {
+        for (Team team : teams)
             team.setScore(0);
 
-        for (Match match: matches) {
+        for (Match match : matches) {
             if (match.getTeam1() != null && match.getTeam2() != null) {
                 match.getTeam1().addScore(match.getScore1() - match.getScore2());
                 match.getTeam2().addScore(match.getScore2() - match.getScore1());
@@ -47,17 +46,18 @@ public class Tournament {
 
     }
 
-    public Tournament(String name){
-        this.name=name ;
+    public Tournament(String name) {
+        this.name = name;
         teams = new ArrayList<>();
         closeSignUp = false;
     }
-    public Tournament(){
+
+    public Tournament() {
         teams = new ArrayList<>();
     }
 
     public void printMatches() {
-        int i =1;
+        int i = 1;
         for (Match match : matches) {
             System.out.println(i + ": " + match.toString());
             i++;
@@ -65,7 +65,7 @@ public class Tournament {
     }
 
     public void printTeams() {
-        if (teams.size() != 0 ){
+        if (teams.size() != 0) {
             for (Team t : teams) {
                 System.out.println(t.toString());
             }
@@ -114,12 +114,12 @@ public class Tournament {
     @Override
     public String toString() {
         String str = "";
-        str+= " Navn: " + name;
-        str+= ". Tilmeldingsfrist: " + deadline;
-        str+= ". Der er " + teams.size() + " hold tilmeldte";
-        if ( closeSignUp == true )
-        str+= ". Tilmelding er slut";
-        else str+= ". Tilmelding er åben";
+        str += " Navn: " + name;
+        str += ". Tilmeldingsfrist: " + deadline;
+        str += ". Der er " + teams.size() + " hold tilmeldte";
+        if (closeSignUp == true)
+            str += ". Tilmelding er slut";
+        else str += ". Tilmelding er åben";
         return str + ".";
 
     }

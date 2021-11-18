@@ -21,6 +21,7 @@ public class Team {
         this.teamID = ID;
         this.name = name;
         this.score = Score;
+
     }
 
     public String getName(){

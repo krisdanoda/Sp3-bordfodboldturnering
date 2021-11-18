@@ -5,9 +5,7 @@ public class UI {
     private Knockout currentTournament;
     public int count2=0;
 
-    public UI(Knockout currentTournament) {
-        this.currentTournament = currentTournament;
-    }
+
 
     public void menu() {
         int input=0 ;
@@ -63,14 +61,20 @@ public class UI {
                     break;
                 case 3:
                     //Load data
-                    currentTournament = new Knockout(Main.io.readTeamData());
-
+                    ArrayList <Team> tempTeam = Main.io.readTeamData();
+                    Match [] tempMatches = Main.io.readMatchData();
+                    if (tempMatches.length>0) {
+                        currentTournament = new Knockout(tempTeam, tempMatches);
+                    }
+                    else {
+                        currentTournament = new Knockout(tempTeam);
+                    }
                     break;
 
                 case 4:
                     //Save Data
                     Main.io.saveGameData(currentTournament);
-
+                    System.out.println(currentTournament.getName() + " er gemt");
                     break;
                 case 5:
                     quit = true;
@@ -253,7 +257,6 @@ public class UI {
     public void playerMenu(Knockout tournament) {
         int input = 0;
         Team team=new Team("test") ;
-        UI ui = new UI(tournament);
 
         while(count2==1){
             if (tournament.getIsCloseSignUp()) {
