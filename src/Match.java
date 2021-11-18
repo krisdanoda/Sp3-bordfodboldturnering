@@ -95,8 +95,10 @@ public class Match {
         Team winner = null;
         if (score1 > score2)
             winner = team1;
+            team1.addPoints();
         if (score2 > score1)
             winner = team2;
+            team2.addPoints();
         return winner;
     }
 }

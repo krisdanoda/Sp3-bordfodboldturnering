@@ -404,4 +404,7 @@ public class UI {
         inputS = getUserInput("Angiv navn på sidste spiller");
         team.getPlayers().add(new Player(inputS));
     }
+    public void showPlacements(){
+
+    }
 }

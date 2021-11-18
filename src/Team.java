@@ -7,6 +7,7 @@ public class Team {
     private int score;
     private static int ID = 1;
     private int  teamID;
+    private int points;
 
 
     public Team(String name) {
@@ -46,6 +47,13 @@ public class Team {
 
     public int getTeamID() {
         return teamID;
+    }
+
+    public void addPoints(){
+        points+=2;
+    }
+    public int getPoints(){
+        return points;
     }
 
     @Override
