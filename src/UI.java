@@ -168,10 +168,15 @@ public class UI {
                     break;
                 case 3:
                     if(currentTournament.teams.size()>=1) {
-                    System.out.println("Tilmelding er lukket");
                     currentTournament.setCloseSignUp(true);
-                    currentTournament.createMatches();
-                    currentTournament.createBracket();
+                    if(currentTournament.matchesList.size()==0) {
+                        System.out.println("Tilmelding er lukket");
+                        currentTournament.createMatches();
+                        currentTournament.createBracket();
+                    }
+                    else{
+                        System.out.println("Tilmelding er allerede lukket");
+                    }
                     }
                     else{
                         System.out.println("Der er ikke nok hold tilmeldt");
@@ -203,7 +208,7 @@ public class UI {
 
         while (!quit) {
             if (match.getTeam1() == null || match.getTeam2() == null) {
-                System.out.println("Kan ikke sæt Score på kampen fordi der mangler hold");
+                System.out.println("Kan ikke sætte Score på kampen fordi der mangler hold");
             } else {
                 Team team1 = match.getTeam1();
                 Team team2 = match.getTeam2();
